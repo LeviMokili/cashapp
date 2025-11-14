@@ -17,8 +17,9 @@ class DataConfirmation extends Controller
 
             
         $totalUsers = User::count();
-        $pendingTransfers = Transfer::where('status', 'Pending')->count();
-        $completedTransfers = Transfer::where('status', 'Confirmed')->count();
+        $pendingTransfers = Transfer::whereDate('date_transfer', today())->where('status', 'Pending')->count();
+        $completedTransfers = Transfer::whereDate('date_transfer', today())->where('status', 'Confirmed')->count();
+        $cancelledTransfers = Transfer::whereDate('date_transfer', today())->where('status', 'Declined')->count();
 
 
         return view('DataConfirmation.dashboard', compact(
@@ -26,7 +27,8 @@ class DataConfirmation extends Controller
             'todayAmount',
             'totalUsers',
             'pendingTransfers',
-            'completedTransfers'
+            'completedTransfers',
+            'cancelledTransfers'
         ));
 
     }

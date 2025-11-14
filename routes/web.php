@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
 
     // User1 Routes - Updated to use home.blade.php
     Route::prefix('user1')->middleware('user1')->group(function () {
-        Route::get('/leave/employee/page', [DataEntry::class, 'dashboard'])->name('hr.leave.employee.page');
+        Route::get('/transfer/create/page', [DataEntry::class, 'dashboard'])->name('hr.leave.employee.page');
         Route::get('create/leave/employee/page', [DataEntry::class, 'createLeaveEmployee'])
             ->name('hr.LeavesManage.create-leave-employee');
 

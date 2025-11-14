@@ -42,6 +42,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-span-12 md:order-3 lg:col-span-6 2xl:col-span-3 card">
+                    <div class="card-body">
+                        <div class="grid grid-cols-12">
+                            <div class="col-span-8 md:col-span-9">
+                                <p class="text-slate-500 dark:text-slate-200">Total Today Money</p>
+                                <h5 class="mt-3 mb-4"><span class="counter-value"
+                                        data-target="{{ $totalMoney }}">0</span>$</h5>
+                            </div>
+                            <div class="col-span-4 md:col-span-3">
+                                <div id="totalEmployee" data-chart-colors='["bg-custom-500"]' dir="ltr"
+                                    class="grow apex-charts"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 mt-3">
+                            <p class="text-slate-500 dark:text-slate-200 grow"><span
+                                    class="font-medium text-green-500">15%</span> Increase</p>
+                            <p class="text-slate-500 dark:text-slate-200">This Month</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-span-12 md:order-4 lg:col-span-6 2xl:col-span-3 card">
                     <div class="card-body">
                         <div class="grid grid-cols-12">

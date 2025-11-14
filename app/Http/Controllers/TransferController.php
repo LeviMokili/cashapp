@@ -42,13 +42,16 @@ class TransferController extends Controller
 
 
         // Log the transfer creation
-
         AuditLog::create([
             'status' => 'Pending',
             'perfomed_by' => Auth::user()->name,
             'transfer_code' => $referenceCode,
-            'amount' => $validated['amount']
+            'amount' => $validated['amount'],
+            'sender_name' => $validated['sender_name'],
+            'receiver_name' => $validated['receiver_name'],
         ]);
+
+
 
         return redirect()->route('hr.leave.employee.page')
             ->with('success', 'Transfer created successfully!');
@@ -161,7 +164,18 @@ class TransferController extends Controller
                 ], 400);
             }
 
-           
+
+            $audit = AuditLog::where('transfer_code', $transfer->reference_code )->first();
+
+            if ($audit) {
+                $audit->update([
+                    'status'=> $newStatus,
+                    'confirmed_by' => Auth::user()->name
+                ]);
+            }
+
+
+
             $transfer->status = $newStatus;
             $transfer->save();
 

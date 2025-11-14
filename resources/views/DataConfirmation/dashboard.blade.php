@@ -76,14 +76,11 @@
                     <div class="card">
                         <div class="flex items-center gap-3 card-body">
                             <div
-                                class="flex items-center justify-center rounded-md size-12 text-sky-500 bg-sky-100 text-15 dark:bg-sky-500/20 shrink-0">
-                                <i data-lucide="user"></i>
-                            </div>
+                                class="flex items-center justify-center text-purple-500 bg-purple-100 rounded-md size-12 text-15 dark:bg-purple-500/20 shrink-0">
+                                <i data-lucide="stethoscope"></i></div>
                             <div class="grow">
-                                <h5 class="mb-1 text-16">
-                                    <span class="counter-value" data-target="{{ $totalUsers }}">0</span>
-                                </h5>
-                                <p class="text-slate-500 dark:text-zink-200">Total Users</p>
+                                <h5 class="mb-1 text-16"><span class="counter-value" data-target="{{ $cancelledTransfers }}">0</span></h5>
+                                <p class="text-slate-500 dark:text-zink-200">Cancelled Transcations</p>
                             </div>
                         </div>
                     </div>

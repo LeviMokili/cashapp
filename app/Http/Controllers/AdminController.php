@@ -23,11 +23,13 @@ class AdminController extends Controller
         $selectedWeek = $request->get('week');
 
         // Statistics
-        $totalTransfers = Transfer::count();
-        $pendingTransfers = Transfer::where('status', 'Pending')->count();
-        $completedTransfers = Transfer::where('status', 'Confirmed')->count();
-        $rejectedTransfers = Transfer::where('status', 'Cancelled')->count();
+        $totalTransfers = Transfer::whereDate('date_transfer', today())->where('status', 'Confirmed')->count();
+        $pendingTransfers = Transfer::whereDate('date_transfer', today())->where('status', 'Pending')->count();
+        $completedTransfers = Transfer::whereDate('date_transfer', today())->where('status', 'Confirmed')->count();
+        $rejectedTransfers = Transfer::whereDate('date_transfer', today())->where('status', 'Cancelled')->count();
         $totalUsers = User::count();
+        $totalMoney = Transfer::whereDate('date_transfer', today())->where('status', 'Confirmed')->sum('amount');
+
 
 
         $transfers = Transfer::whereDate('date_transfer', today())->where('status', 'Confirmed')->latest()->get();
@@ -88,7 +90,8 @@ class AdminController extends Controller
             'availableMonths',
             'availableWeeks',
             'showChart',
-            'transfers'
+            'transfers',
+            'totalMoney'
         ));
     }
 
@@ -389,7 +392,7 @@ class AdminController extends Controller
     // Update employee
     public function updateEmployee(Request $request, $id)
     {
-        $request->validate([
+        $credentials = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
             'role' => 'required|string|max:255',
@@ -398,6 +401,8 @@ class AdminController extends Controller
             'status' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
         ]);
+
+         $credentials['status'] = 'active';
 
         try {
             DB::beginTransaction();

@@ -12,5 +12,7 @@ class AuditLog extends Model
         'confirmed_by',
         'transfer_code',
         'amount',
+        'sender_name',
+        'receiver_name'
     ];
 }

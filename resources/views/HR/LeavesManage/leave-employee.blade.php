@@ -26,8 +26,8 @@
                                 class="flex items-center justify-center text-red-500 bg-red-100 rounded-md size-12 text-15 dark:bg-red-500/20 shrink-0">
                                 <i data-lucide="file-bar-chart-2"></i></div>
                             <div class="grow">
-                                <h5 class="mb-1 text-16"><span class="counter-value" data-target="{{ $todayAmount }}">0</span></h5>
-                                <p class="text-slate-500 dark:text-zink-200">Total Money</p>
+                                <h5 class="mb-1 text-16"><span class="counter-value" data-target="{{ $todayAmount }}">0</span>$</h5>
+                                <p class="text-slate-500 dark:text-zink-200">Today Total Amount </p>
                             </div>
                         </div>
                     </div>
@@ -67,26 +67,14 @@
                                 class="flex items-center justify-center text-purple-500 bg-purple-100 rounded-md size-12 text-15 dark:bg-purple-500/20 shrink-0">
                                 <i data-lucide="stethoscope"></i></div>
                             <div class="grow">
-                                <h5 class="mb-1 text-16"><span class="counter-value" data-target="{{ $completedTransfers }}">0</span></h5>
+                                <h5 class="mb-1 text-16"><span class="counter-value" data-target="{{ $cancelledTransfers }}">0</span></h5>
                                 <p class="text-slate-500 dark:text-zink-200">Cancelled Transcations</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="xl:col-span-3">
-                    <div class="card">
-                        <div class="flex items-center gap-3 card-body">
-                            <div
-                                class="flex items-center justify-center rounded-md size-12 text-sky-500 bg-sky-100 text-15 dark:bg-sky-500/20 shrink-0">
-                                <i data-lucide="user"></i></div>
-                            <div class="grow">
-                                <h5 class="mb-1 text-16"><span class="counter-value" data-target="{{  $totalUsers }}">0</span></h5>
-                                <p class="text-slate-500 dark:text-zink-200">Total Users</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
 
             <div class="card">
@@ -98,7 +86,7 @@
                                 <a href="{{ route('hr.LeavesManage.create-leave-employee') }}" type="button"
                                     class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">
                                     <i data-lucide="plus" class="inline-block size-4"></i>
-                                    <span class="align-middle">Add Leave</span>
+                                    <span class="align-middle">Add Transfer</span>
                                 </a>
                             </div>
                         </div>
@@ -168,7 +156,7 @@
                                         @elseif($value->status == 'Pending')
                                             <span
                                                 class="px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-yellow-100 border-transparent text-yellow-500 dark:bg-yellow-500/20 dark:border-transparent">{{ $value->status }}</span>
-                                        @elseif($value->status == 'Declined')
+                                        @elseif($value->status == 'Cancelled')
                                             <span
                                                 class="px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-red-100 border-transparent text-red-500 dark:bg-red-500/20 dark:border-transparent">{{ $value->status }}</span>
                                         @else

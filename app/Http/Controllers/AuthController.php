@@ -18,35 +18,43 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-   public function login(Request $request)
+public function login(Request $request)
 {
     $credentials = $request->validate([
         'name' => 'required|string',
-        'password' => 'required|string',
+        'password' => 'required',
     ]);
 
+    // Check if user exists and is active
+    $user = \App\Models\User::where('name', $credentials['name'])->first();
+
+    if (!$user || $user->status !== 'Active') {  // or $user->status != 1
+        return back()->with('error', 'Your account is inactive. Please contact admin.');
+    }
+
+    // Attempt login
     if (Auth::attempt($credentials)) {
+
         $request->session()->regenerate();
+
         $user = Auth::user();
 
         \Log::info('User logged in: ' . $user->name);
         \Log::info('User role: ' . $user->role);
 
+        // Redirect based on role
         if ($user->isAdmin()) {
-            \Log::info('Redirecting admin to dashboard');
             return redirect()->route('admin.dashboard');
         } elseif ($user->isUser1()) {
-            \Log::info('Redirecting user1 to dashboard');
             return redirect()->route('hr.leave.employee.page');
         } elseif ($user->isUser2()) {
-            \Log::info('Redirecting user2 to dashboard');
             return redirect()->route('DataConfirmation.dashboard');
         }
     }
 
-    session()->flash('error', 'Invalid credentials');
-    return back();
+    return back()->with('error', 'Invalid credentials');
 }
+
 
 
 
