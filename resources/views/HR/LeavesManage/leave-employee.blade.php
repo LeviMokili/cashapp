@@ -163,7 +163,7 @@
                                         @endif
                                     </td>
                                     <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                        {{ $value->amount }}</td>
+                                          {{ number_format($value->amount, 2) }}</td>
                                     <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
                                         <div class="flex justify-end gap-2">
                                             <a href="{{ route('transfers.edit', $value->id) }}" data-modal-target="leaveOverviewModal"

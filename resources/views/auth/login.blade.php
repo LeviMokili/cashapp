@@ -27,7 +27,7 @@
             @endif
 
             <div class="mt-8 text-center">
-                <h4 class="mb-1 text-custom-500 dark:text-custom-500">Welcome Back !</h4>
+                <h4 class="mb-1 dark:custom-black-500 dark:text-custom-500">TIC-TAC Cash Transfer </h4>
                 <p class="text-slate-500 dark:text-zink-200">Sign in to continue</p>
             </div>
 
@@ -54,8 +54,8 @@
                 
                 <div>
                     <div class="flex items-center gap-2">
-                        <input id="remember" name="remember" class="border rounded-sm appearance-none size-4 bg-slate-100 border-slate-200 dark:bg-zink-600 dark:border-zink-500 checked:bg-custom-500 checked:border-custom-500 dark:checked:bg-custom-500 dark:checked:border-custom-500 checked:disabled:bg-custom-400 checked:disabled:border-custom-400" type="checkbox" value="1" {{ old('remember') ? 'checked' : '' }}>
-                        <label for="remember" class="inline-block text-base font-medium align-middle cursor-pointer">Remember me</label>
+                        <!-- <input id="remember" name="remember" class="border rounded-sm appearance-none size-4 bg-slate-100 border-slate-200 dark:bg-zink-600 dark:border-zink-500 checked:bg-custom-500 checked:border-custom-500 dark:checked:bg-custom-500 dark:checked:border-custom-500 checked:disabled:bg-custom-400 checked:disabled:border-custom-400" type="checkbox" value="1" {{ old('remember') ? 'checked' : '' }}>
+                        <label for="remember" class="inline-block text-base font-medium align-middle cursor-pointer">Remember me</label> -->
                     </div>
                 </div>
                 
@@ -64,15 +64,13 @@
                 </div>
 
                 <!-- Rest of your form remains the same -->
-                <div class="relative text-center my-9 before:absolute before:top-3 before:left-0 before:right-0 before:border-t before:border-t-slate-200 dark:before:border-t-zink-500">
-                    <h5 class="inline-block px-2 py-0.5 text-sm bg-white text-slate-500 dark:bg-zink-600 dark:text-zink-200 rounded relative">Sign In with</h5>
-                </div>
-
+               
+<!-- 
                 <div class="mt-10 text-center">
                     <p class="mb-0 text-slate-500 dark:text-zink-200">Don't have an account ?
                         <a href="{{ route('register') }}" class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500"> SignUp</a>
                     </p>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>

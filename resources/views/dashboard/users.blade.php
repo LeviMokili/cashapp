@@ -1,14 +1,16 @@
 @extends('layouts.master')
 @section('content')
     <!-- Page-content -->
-    <div class="group-data-[sidebar-size=lg]:ltr:md:ml-vertical-menu group-data-[sidebar-size=lg]:rtl:md:mr-vertical-menu group-data-[sidebar-size=md]:ltr:ml-vertical-menu-md group-data-[sidebar-size=md]:rtl:mr-vertical-menu-md group-data-[sidebar-size=sm]:ltr:ml-vertical-menu-sm group-data-[sidebar-size=sm]:rtl:mr-vertical-menu-sm pt-[calc(theme('spacing.header')_*_1)] pb-[calc(theme('spacing.header')_*_0.8)] px-4 group-data-[navbar=bordered]:pt-[calc(theme('spacing.header')_*_1.3)] group-data-[navbar=hidden]:pt-0 group-data-[layout=horizontal]:mx-auto group-data-[layout=horizontal]:max-w-screen-2xl group-data-[layout=horizontal]:px-0 group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:ltr:md:ml-auto group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:rtl:md:mr-auto group-data-[layout=horizontal]:md:pt-[calc(theme('spacing.header')_*_1.6)] group-data-[layout=horizontal]:px-3 group-data-[layout=horizontal]:group-data-[navbar=hidden]:pt-[calc(theme('spacing.header')_*_0.9)]">
+    <div
+        class="group-data-[sidebar-size=lg]:ltr:md:ml-vertical-menu group-data-[sidebar-size=lg]:rtl:md:mr-vertical-menu group-data-[sidebar-size=md]:ltr:ml-vertical-menu-md group-data-[sidebar-size=md]:rtl:mr-vertical-menu-md group-data-[sidebar-size=sm]:ltr:ml-vertical-menu-sm group-data-[sidebar-size=sm]:rtl:mr-vertical-menu-sm pt-[calc(theme('spacing.header')_*_1)] pb-[calc(theme('spacing.header')_*_0.8)] px-4 group-data-[navbar=bordered]:pt-[calc(theme('spacing.header')_*_1.3)] group-data-[navbar=hidden]:pt-0 group-data-[layout=horizontal]:mx-auto group-data-[layout=horizontal]:max-w-screen-2xl group-data-[layout=horizontal]:px-0 group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:ltr:md:ml-auto group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:rtl:md:mr-auto group-data-[layout=horizontal]:md:pt-[calc(theme('spacing.header')_*_1.6)] group-data-[layout=horizontal]:px-3 group-data-[layout=horizontal]:group-data-[navbar=hidden]:pt-[calc(theme('spacing.header')_*_0.9)]">
         <div class="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
             <div class="flex flex-col gap-2 py-4 md:flex-row md:items-center print:hidden">
                 <div class="grow">
                     <h5 class="text-16">Employee List</h5>
                 </div>
                 <ul class="flex items-center gap-2 text-sm font-normal shrink-0">
-                    <li class="relative before:content-['\ea54'] before:font-remix ltr:before:-right-1 rtl:before:-left-1  before:absolute before:text-[18px] before:-top-[3px] ltr:pr-4 rtl:pl-4 before:text-slate-400 dark:text-zink-200">
+                    <li
+                        class="relative before:content-['\ea54'] before:font-remix ltr:before:-right-1 rtl:before:-left-1  before:absolute before:text-[18px] before:-top-[3px] ltr:pr-4 rtl:pl-4 before:text-slate-400 dark:text-zink-200">
                         <a href="#!" class="text-slate-400 dark:text-zink-200">HR Management</a>
                     </li>
                     <li class="text-slate-700 dark:text-zink-100">
@@ -16,15 +18,17 @@
                     </li>
                 </ul>
             </div>
-            
+
             @if(session('success'))
-                <div class="mb-4 px-4 py-3 text-sm text-green-500 border border-transparent rounded-md bg-green-50 dark:bg-green-500/20">
+                <div
+                    class="mb-4 px-4 py-3 text-sm text-green-500 border border-transparent rounded-md bg-green-50 dark:bg-green-500/20">
                     {{ session('success') }}
                 </div>
             @endif
 
             @if(session('error'))
-                <div class="mb-4 px-4 py-3 text-sm text-red-500 border border-transparent rounded-md bg-red-50 dark:bg-red-500/20">
+                <div
+                    class="mb-4 px-4 py-3 text-sm text-red-500 border border-transparent rounded-md bg-red-50 dark:bg-red-500/20">
                     {{ session('error') }}
                 </div>
             @endif
@@ -48,72 +52,80 @@
                         </div>
                     </div>
                     <br>
-                   <table id="alternativePagination" class="display" style="width:100%">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th class="hidden"></th>
-            <th>Employee ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Location</th>
-            <th>Join Date</th>
-            <th>Status</th>
-            <th>Phone</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($userslist as $key => $user)
-            <tr class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
-                <td class="id hidden">{{ $user->id }}</td>
-                <td>{{ ++$key }}</td>
-                <td class="user_id">{{ $user->employee_id }}</td>
-                <td class="name">{{ $user->name }}</td>
-                <td class="email">{{ $user->email }}</td>
-                <td class="role_name">{{ $user->role }}</td>
-                <td class="location">{{ $user->location }}</td>
-                <td class="join_date">{{ \Carbon\Carbon::parse($user->joinDate)->format('d M, Y') }}</td>
-                <td>
-                    @if($user->status == 'Active')
-                        <span class="px-2.5 py-0.5 text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent inline-flex items-center status">
-                            <i data-lucide="check-circle" class="size-3 mr-1.5"></i>
-                            {{ $user->status }}
-                        </span>
-                    @elseif($user->status == 'Inactive')
-                        <span class="px-2.5 py-0.5 inline-flex items-center text-xs font-medium rounded border bg-slate-100 border-transparent text-slate-500 dark:bg-slate-500/20 dark:text-zink-200 dark:border-transparent status">
-                            <i data-lucide="loader" class="size-3 mr-1.5"></i>
-                            {{ $user->status }}
-                        </span>
-                    @elseif($user->status == 'Disable')
-                        <span class="px-2.5 py-0.5 inline-flex items-center text-xs font-medium rounded border bg-red-100 border-transparent text-red-500 dark:bg-red-500/20 dark:border-transparent status">
-                            <i data-lucide="x" class="size-3 mr-1.5"></i>
-                            {{ $user->status }}
-                        </span>
-                    @endif
-                </td>
-                <td class="phone_number">{{ $user->phone }}</td>
-                <td>
-                    <div class="flex gap-3">
-                        <a data-modal-target="editEmployeeModal" data-employee-id="{{ $user->id }}" class="edit-employee flex items-center justify-center transition-all duration-200 ease-linear rounded-md size-8 text-slate-500 bg-slate-100 hover:text-white hover:bg-slate-500 dark:bg-zink-600 dark:text-zink-200 dark:hover:text-white dark:hover:bg-zink-500">
-                            <i data-lucide="pencil" class="size-4"></i>
-                        </a>
-                        <a data-modal-target="deleteModal" data-employee-id="{{ $user->id }}" class="delete-employee flex items-center justify-center transition-all duration-200 ease-linear rounded-md size-8 bg-slate-100 text-slate-500 hover:text-red-500 hover:bg-red-100 dark:bg-zink-600 dark:text-zink-200 dark:hover:text-red-500 dark:hover:bg-red-500/20">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="trash-2" class="lucide lucide-trash-2 size-4">
-                                <path d="M3 6h18"></path>
-                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                                <line x1="10" x2="10" y1="11" y2="17"></line>
-                                <line x1="14" x2="14" y1="11" y2="17"></line>
-                            </svg>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+                    <table id="alternativePagination" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th class="hidden"></th>
+                                <th>Employee ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Location</th>
+                                <th>Join Date</th>
+                                <th>Status</th>
+                                <th>Phone</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($userslist as $key => $user)
+                                <tr class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
+                                    <td class="id hidden">{{ $user->id }}</td>
+                                    <td>{{ ++$key }}</td>
+                                    <td class="user_id">{{ $user->employee_id }}</td>
+                                    <td class="name">{{ $user->name }}</td>
+                                    <td class="email">{{ $user->email }}</td>
+                                    <td class="role_name">{{ $user->role }}</td>
+                                    <td class="location">{{ $user->location }}</td>
+                                    <td class="join_date">{{ \Carbon\Carbon::parse($user->joinDate)->format('d M, Y') }}</td>
+                                    <td>
+                                        @if($user->status == 'Active')
+                                            <span
+                                                class="px-2.5 py-0.5 text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent inline-flex items-center status">
+                                                <i data-lucide="check-circle" class="size-3 mr-1.5"></i>
+                                                {{ $user->status }}
+                                            </span>
+                                        @elseif($user->status == 'Inactive')
+                                            <span
+                                                class="px-2.5 py-0.5 inline-flex items-center text-xs font-medium rounded border bg-slate-100 border-transparent text-slate-500 dark:bg-slate-500/20 dark:text-zink-200 dark:border-transparent status">
+                                                <i data-lucide="loader" class="size-3 mr-1.5"></i>
+                                                {{ $user->status }}
+                                            </span>
+                                        @elseif($user->status == 'Disable')
+                                            <span
+                                                class="px-2.5 py-0.5 inline-flex items-center text-xs font-medium rounded border bg-red-100 border-transparent text-red-500 dark:bg-red-500/20 dark:border-transparent status">
+                                                <i data-lucide="x" class="size-3 mr-1.5"></i>
+                                                {{ $user->status }}
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td class="phone_number">{{ $user->phone }}</td>
+                                    <td>
+                                        <div class="flex gap-3">
+                                            <a data-modal-target="editEmployeeModal" data-employee-id="{{ $user->id }}"
+                                                class="edit-employee flex items-center justify-center transition-all duration-200 ease-linear rounded-md size-8 text-slate-500 bg-slate-100 hover:text-white hover:bg-slate-500 dark:bg-zink-600 dark:text-zink-200 dark:hover:text-white dark:hover:bg-zink-500">
+                                                <i data-lucide="pencil" class="size-4"></i>
+                                            </a>
+                                            <a data-modal-target="deleteModal" data-employee-id="{{ $user->id }}"
+                                                class="delete-employee flex items-center justify-center transition-all duration-200 ease-linear rounded-md size-8 bg-slate-100 text-slate-500 hover:text-red-500 hover:bg-red-100 dark:bg-zink-600 dark:text-zink-200 dark:hover:text-red-500 dark:hover:bg-red-500/20">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round" data-lucide="trash-2"
+                                                    class="lucide lucide-trash-2 size-4">
+                                                    <path d="M3 6h18"></path>
+                                                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                                    <line x1="10" x2="10" y1="11" y2="17"></line>
+                                                    <line x1="14" x2="14" y1="11" y2="17"></line>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -121,208 +133,211 @@
     <!-- End Page-content -->
 
     <!--add Employee-->
-   <!--add Employee-->
-<div id="addEmployeeModal" modal-center=""
-    class="fixed flex flex-col hidden transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4 show">
-    <div class="w-screen md:w-[30rem] bg-white shadow rounded-md dark:bg-zink-600">
-        <div class="flex items-center justify-between p-4 border-b dark:border-zink-500">
-            <h5 class="text-16">Add Employee</h5>
-            <button data-modal-close="addEmployeeModal"
-                class="transition-all duration-200 ease-linear text-slate-400 hover:text-red-500">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-        </div>
-        <div class="max-h-[calc(theme('height.screen')_-_180px)] p-4 overflow-y-auto">
-            <form class="create-form" id="create-form" action="{{ route('employee.add') }}" method="POST">
-                @csrf
-                <div id="alert-error-msg"
-                    class="hidden px-4 py-3 text-sm text-red-500 border border-transparent rounded-md bg-red-50 dark:bg-red-500/20">
-                </div>
-                <div class="grid grid-cols-1 gap-4 xl:grid-cols-12">
-                    <div class="xl:col-span-12">
-                        <label for="employeeId" class="inline-block mb-2 text-base font-medium">Employee ID</label>
-                        <input type="text" id="employeeId"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            value="Auto Generated" disabled>
+    <!--add Employee-->
+    <div id="addEmployeeModal" modal-center=""
+        class="fixed flex flex-col hidden transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4 show">
+        <div class="w-screen md:w-[30rem] bg-white shadow rounded-md dark:bg-zink-600">
+            <div class="flex items-center justify-between p-4 border-b dark:border-zink-500">
+                <h5 class="text-16">Add Employee</h5>
+                <button data-modal-close="addEmployeeModal"
+                    class="transition-all duration-200 ease-linear text-slate-400 hover:text-red-500">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="max-h-[calc(theme('height.screen')_-_180px)] p-4 overflow-y-auto">
+                <form class="create-form" id="create-form" action="{{ route('employee.add') }}" method="POST">
+                    @csrf
+                    <div id="alert-error-msg"
+                        class="hidden px-4 py-3 text-sm text-red-500 border border-transparent rounded-md bg-red-50 dark:bg-red-500/20">
                     </div>
-                    <div class="xl:col-span-12">
-                        <label for="employeeInput" class="inline-block mb-2 text-base font-medium">Name</label>
-                        <input type="text" name="name" id="employeeInput"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            placeholder="Employee name" value="{{ old('name') }}" required>
-                        @error('name')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
+                    <div class="grid grid-cols-1 gap-4 xl:grid-cols-12">
+                        <div class="xl:col-span-12">
+                            <label for="employeeId" class="inline-block mb-2 text-base font-medium">Employee ID</label>
+                            <input type="text" id="employeeId"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                value="Auto Generated" disabled>
+                        </div>
+                        <div class="xl:col-span-12">
+                            <label for="employeeInput" class="inline-block mb-2 text-base font-medium">Name</label>
+                            <input type="text" name="name" id="employeeInput"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                placeholder="Employee name" value="{{ old('name') }}" required>
+                            @error('name')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="xl:col-span-12">
+                            <label for="emailInput" class="inline-block mb-2 text-base font-medium">Email</label>
+                            <input type="email" name="email" id="emailInput"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                placeholder="example@starcode.com" value="{{ old('email') }}" required>
+                            @error('email')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="xl:col-span-6">
+                            <label for="role" class="inline-block mb-2 text-base font-medium">Role</label>
+                            <select name="role" id="role"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                required>
+                                <option value="">-- Select Role --</option>
+                                <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                                <option value="user1" {{ old('role') == 'user1' ? 'selected' : '' }}>User 1</option>
+                                <option value="user2" {{ old('role') == 'user2' ? 'selected' : '' }}>User 2</option>
+                            </select>
+                            @error('role')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="xl:col-span-6">
+                            <label for="status" class="inline-block mb-2 text-base font-medium">Status</label>
+                            <select name="status" id="status"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                required>
+                                <option value="">-- Select Status --</option>
+                                <option value="Active" {{ old('status') == 'Active' ? 'selected' : '' }}>Active</option>
+                                <option value="Inactive" {{ old('status') == 'Inactive' ? 'selected' : '' }}>Inactive</option>
+                                <option value="Disable" {{ old('status') == 'Disable' ? 'selected' : '' }}>Disable</option>
+                            </select>
+                            @error('status')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="xl:col-span-6">
+                            <label for="phoneInput" class="inline-block mb-2 text-base font-medium">Phone Number</label>
+                            <input type="tel" name="phone" id="phoneInput"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                placeholder="Enter phone number" value="{{ old('phone') }}" required>
+                            @error('phone')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="xl:col-span-6">
+                            <label for="locationInput" class="inline-block mb-2 text-base font-medium">Location</label>
+                            <input type="text" name="location" id="locationInput"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                placeholder="Enter location" value="{{ old('location') }}" required>
+                            @error('location')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="xl:col-span-12">
+                            <label for="joiningDateInput" class="inline-block mb-2 text-base font-medium">Joining
+                                Date</label>
+                            <input type="text" name="joinDate" id="joiningDateInput"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                placeholder="Select date" data-provider="flatpickr" data-date-format="d M, Y"
+                                value="{{ old('joinDate') }}" required>
+                            @error('joinDate')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="xl:col-span-12">
-                        <label for="emailInput" class="inline-block mb-2 text-base font-medium">Email</label>
-                        <input type="email" name="email" id="emailInput"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            placeholder="example@starcode.com" value="{{ old('email') }}" required>
-                        @error('email')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
+                    <div class="flex justify-end gap-2 mt-4">
+                        <button type="button" data-modal-close="addEmployeeModal"
+                            class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-600 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">Cancel</button>
+                        <button type="submit"
+                            class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Add
+                            Employee</button>
                     </div>
-                    <div class="xl:col-span-6">
-                        <label for="role" class="inline-block mb-2 text-base font-medium">Role</label>
-                        <select name="role" id="role"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            required>
-                            <option value="">-- Select Role --</option>
-                            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                            <option value="user1" {{ old('role') == 'user1' ? 'selected' : '' }}>User 1</option>
-                            <option value="user2" {{ old('role') == 'user2' ? 'selected' : '' }}>User 2</option>
-                        </select>
-                        @error('role')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="xl:col-span-6">
-                        <label for="status" class="inline-block mb-2 text-base font-medium">Status</label>
-                        <select name="status" id="status"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            required>
-                            <option value="">-- Select Status --</option>
-                            <option value="Active" {{ old('status') == 'Active' ? 'selected' : '' }}>Active</option>
-                            <option value="Inactive" {{ old('status') == 'Inactive' ? 'selected' : '' }}>Inactive</option>
-                            <option value="Disable" {{ old('status') == 'Disable' ? 'selected' : '' }}>Disable</option>
-                        </select>
-                        @error('status')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="xl:col-span-6">
-                        <label for="phoneInput" class="inline-block mb-2 text-base font-medium">Phone Number</label>
-                        <input type="tel" name="phone" id="phoneInput"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            placeholder="Enter phone number" value="{{ old('phone') }}" required>
-                        @error('phone')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="xl:col-span-6">
-                        <label for="locationInput" class="inline-block mb-2 text-base font-medium">Location</label>
-                        <input type="text" name="location" id="locationInput"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            placeholder="Enter location" value="{{ old('location') }}" required>
-                        @error('location')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="xl:col-span-12">
-                        <label for="joiningDateInput" class="inline-block mb-2 text-base font-medium">Joining Date</label>
-                        <input type="text" name="joinDate" id="joiningDateInput"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            placeholder="Select date" data-provider="flatpickr" data-date-format="d M, Y"
-                            value="{{ old('joinDate') }}" required>
-                        @error('joinDate')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-                <div class="flex justify-end gap-2 mt-4">
-                    <button type="button" data-modal-close="addEmployeeModal"
-                        class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-600 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">Cancel</button>
-                    <button type="submit"
-                        class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Add Employee</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<!--end add Employee-->
+    <!--end add Employee-->
     <!--end add Employee-->
 
     <!--edit Employee-->
     <!--edit Employee-->
-<div id="editEmployeeModal" modal-center=""
-    class="fixed flex flex-col hidden transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4 show ">
-    <div class="w-screen md:w-[30rem] bg-white shadow rounded-md dark:bg-zink-600">
-        <div class="flex items-center justify-between p-4 border-b dark:border-zink-500">
-            <h5 class="text-16">Edit Employee</h5>
-            <button data-modal-close="editEmployeeModal"
-                class="transition-all duration-200 ease-linear text-slate-400 hover:text-red-500">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-        </div>
-        <div class="max-h-[calc(theme('height.screen')_-_180px)] p-4 overflow-y-auto">
-            <form class="edit-form" id="edit-form" action="" method="POST">
-                @csrf
-                @method('PUT')
-                <div id="alert-error-msg"
-                    class="hidden px-4 py-3 text-sm text-red-500 border border-transparent rounded-md bg-red-50 dark:bg-red-500/20">
-                </div>
-                <div class="grid grid-cols-1 gap-4 xl:grid-cols-12">
-                    <div class="xl:col-span-12">
-                        <label for="e_employee_id" class="inline-block mb-2 text-base font-medium">Employee ID</label>
-                        <input type="text" name="employee_id" id="e_employee_id"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            readonly>
+    <div id="editEmployeeModal" modal-center=""
+        class="fixed flex flex-col hidden transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4 show ">
+        <div class="w-screen md:w-[30rem] bg-white shadow rounded-md dark:bg-zink-600">
+            <div class="flex items-center justify-between p-4 border-b dark:border-zink-500">
+                <h5 class="text-16">Edit Employee</h5>
+                <button data-modal-close="editEmployeeModal"
+                    class="transition-all duration-200 ease-linear text-slate-400 hover:text-red-500">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="max-h-[calc(theme('height.screen')_-_180px)] p-4 overflow-y-auto">
+                <form class="edit-form" id="edit-form" action="" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div id="alert-error-msg"
+                        class="hidden px-4 py-3 text-sm text-red-500 border border-transparent rounded-md bg-red-50 dark:bg-red-500/20">
                     </div>
-                    <div class="xl:col-span-12">
-                        <label for="e_name" class="inline-block mb-2 text-base font-medium">Name</label>
-                        <input type="text" name="name" id="e_name"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            placeholder="Employee name" required>
+                    <div class="grid grid-cols-1 gap-4 xl:grid-cols-12">
+                        <div class="xl:col-span-12">
+                            <label for="e_employee_id" class="inline-block mb-2 text-base font-medium">Employee ID</label>
+                            <input type="text" name="employee_id" id="e_employee_id"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                readonly>
+                        </div>
+                        <div class="xl:col-span-12">
+                            <label for="e_name" class="inline-block mb-2 text-base font-medium">Name</label>
+                            <input type="text" name="name" id="e_name"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                placeholder="Employee name" required>
+                        </div>
+                        <div class="xl:col-span-12">
+                            <label for="e_email" class="inline-block mb-2 text-base font-medium">Email</label>
+                            <input type="email" name="email" id="e_email"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                placeholder="example@starcode.com" required>
+                        </div>
+                        <div class="xl:col-span-6">
+                            <label for="e_role" class="inline-block mb-2 text-base font-medium">Role</label>
+                            <select name="role" id="e_role"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                required>
+                                <option value="">-- Select Role --</option>
+                                <option value="admin">Admin</option>
+                                <option value="user1">User 1</option>
+                                <option value="user2">User 2</option>
+                            </select>
+                        </div>
+                        <div class="xl:col-span-6">
+                            <label for="e_status" class="inline-block mb-2 text-base font-medium">Status</label>
+                            <select name="status" id="e_status"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                required>
+                                <option value="">-- Select Status --</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                                <option value="Disable">Disable</option>
+                            </select>
+                        </div>
+                        <div class="xl:col-span-6">
+                            <label for="e_phone" class="inline-block mb-2 text-base font-medium">Phone Number</label>
+                            <input type="tel" name="phone" id="e_phone"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                placeholder="Enter phone number" required>
+                        </div>
+                        <div class="xl:col-span-6">
+                            <label for="e_location" class="inline-block mb-2 text-base font-medium">Location</label>
+                            <input type="text" name="location" id="e_location"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                placeholder="Enter location" required>
+                        </div>
+                        <div class="xl:col-span-12">
+                            <label for="e_joinDate" class="inline-block mb-2 text-base font-medium">Joining Date</label>
+                            <input type="text" name="joinDate" id="e_joinDate"
+                                class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                placeholder="Select date" data-provider="flatpickr" data-date-format="d M, Y" required>
+                        </div>
                     </div>
-                    <div class="xl:col-span-12">
-                        <label for="e_email" class="inline-block mb-2 text-base font-medium">Email</label>
-                        <input type="email" name="email" id="e_email"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            placeholder="example@starcode.com" required>
+                    <div class="flex justify-end gap-2 mt-4">
+                        <button type="button" data-modal-close="editEmployeeModal"
+                            class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-600 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">Cancel</button>
+                        <button type="submit"
+                            class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Update
+                            Employee</button>
                     </div>
-                    <div class="xl:col-span-6">
-                        <label for="e_role" class="inline-block mb-2 text-base font-medium">Role</label>
-                        <select name="role" id="e_role"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            required>
-                            <option value="">-- Select Role --</option>
-                            <option value="admin">Admin</option>
-                            <option value="user1">User 1</option>
-                            <option value="user2">User 2</option>
-                        </select>
-                    </div>
-                    <div class="xl:col-span-6">
-                        <label for="e_status" class="inline-block mb-2 text-base font-medium">Status</label>
-                        <select name="status" id="e_status"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            required>
-                            <option value="">-- Select Status --</option>
-                            <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
-                            <option value="Disable">Disable</option>
-                        </select>
-                    </div>
-                    <div class="xl:col-span-6">
-                        <label for="e_phone" class="inline-block mb-2 text-base font-medium">Phone Number</label>
-                        <input type="tel" name="phone" id="e_phone"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            placeholder="Enter phone number" required>
-                    </div>
-                    <div class="xl:col-span-6">
-                        <label for="e_location" class="inline-block mb-2 text-base font-medium">Location</label>
-                        <input type="text" name="location" id="e_location"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            placeholder="Enter location" required>
-                    </div>
-                    <div class="xl:col-span-12">
-                        <label for="e_joinDate" class="inline-block mb-2 text-base font-medium">Joining Date</label>
-                        <input type="text" name="joinDate" id="e_joinDate"
-                            class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                            placeholder="Select date" data-provider="flatpickr" data-date-format="d M, Y" required>
-                    </div>
-                </div>
-                <div class="flex justify-end gap-2 mt-4">
-                    <button type="button" data-modal-close="editEmployeeModal"
-                        class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-600 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">Cancel</button>
-                    <button type="submit"
-                        class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Update Employee</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<!--end edit Employee-->
+    <!--end edit Employee-->
     <!--end edit Employee-->
 
     <!-- delete modal-->
@@ -348,7 +363,8 @@
                             <button type="button" data-modal-close="deleteModal"
                                 class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">Cancel</button>
                             <button type="submit"
-                                class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">Yes, Delete It!</button>
+                                class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">Yes,
+                                Delete It!</button>
                         </div>
                     </div>
                 </form>
@@ -359,56 +375,56 @@
 @endsection
 
 @section('script')
-<script>
-    $(document).ready(function() {
-        // Edit employee functionality
-        $('.edit-employee').on('click', function() {
-            var employeeId = $(this).data('employee-id');
-            var _this = $(this).closest('tr');
-            
-            // Get employee data from table row
-            var employeeData = {
-                id: _this.find('.id').text().trim(),
-                employee_id: _this.find('.user_id').text().trim(),
-                name: _this.find('.name').text().trim(),
-                email: _this.find('.email').text().trim(),
-                role: _this.find('.role_name').text().trim(),
-                location: _this.find('.location').text().trim(),
-                joinDate: _this.find('.join_date').text().trim(),
-                status: _this.find('.status').text().trim(),
-                phone: _this.find('.phone_number').text().trim()
-            };
+    <script>
+        $(document).ready(function () {
+            // Edit employee functionality
+            $('.edit-employee').on('click', function () {
+                var employeeId = $(this).data('employee-id');
+                var _this = $(this).closest('tr');
 
-            // Populate edit form
-            $('#edit-form').attr('action', '/admin/employees/' + employeeData.id);
-            $('#e_employee_id').val(employeeData.employee_id);
-            $('#e_name').val(employeeData.name);
-            $('#e_email').val(employeeData.email);
-            $('#e_role').val(employeeData.role);
-            $('#e_status').val(employeeData.status);
-            $('#e_phone').val(employeeData.phone);
-            $('#e_location').val(employeeData.location);
-            $('#e_joinDate').val(employeeData.joinDate);
-        });
+                // Get employee data from table row
+                var employeeData = {
+                    id: _this.find('.id').text().trim(),
+                    employee_id: _this.find('.user_id').text().trim(),
+                    name: _this.find('.name').text().trim(),
+                    email: _this.find('.email').text().trim(),
+                    role: _this.find('.role_name').text().trim(),
+                    location: _this.find('.location').text().trim(),
+                    joinDate: _this.find('.join_date').text().trim(),
+                    status: _this.find('.status').text().trim(),
+                    phone: _this.find('.phone_number').text().trim()
+                };
 
-        // Delete employee functionality
-        $('.delete-employee').on('click', function() {
-            var employeeId = $(this).data('employee-id');
-            $('#delete-form').attr('action', '/admin/employees/' + employeeId);
-        });
-
-        // Initialize Flatpickr for date inputs
-        if (document.querySelector("#joiningDateInput")) {
-            flatpickr("#joiningDateInput", {
-                dateFormat: "d M, Y",
+                // Populate edit form
+                $('#edit-form').attr('action', '/admin/employees/' + employeeData.id);
+                $('#e_employee_id').val(employeeData.employee_id);
+                $('#e_name').val(employeeData.name);
+                $('#e_email').val(employeeData.email);
+                $('#e_role').val(employeeData.role);
+                $('#e_status').val(employeeData.status);
+                $('#e_phone').val(employeeData.phone);
+                $('#e_location').val(employeeData.location);
+                $('#e_joinDate').val(employeeData.joinDate);
             });
-        }
 
-        if (document.querySelector("#e_joinDate")) {
-            flatpickr("#e_joinDate", {
-                dateFormat: "d M, Y",
+            // Delete employee functionality
+            $('.delete-employee').on('click', function () {
+                var employeeId = $(this).data('employee-id');
+                $('#delete-form').attr('action', '/admin/employees/' + employeeId);
             });
-        }
-    });
-</script>
+
+            // Initialize Flatpickr for date inputs
+            if (document.querySelector("#joiningDateInput")) {
+                flatpickr("#joiningDateInput", {
+                    dateFormat: "d M, Y",
+                });
+            }
+
+            if (document.querySelector("#e_joinDate")) {
+                flatpickr("#e_joinDate", {
+                    dateFormat: "d M, Y",
+                });
+            }
+        });
+    </script>
 @endsection

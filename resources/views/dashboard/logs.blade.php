@@ -6,8 +6,8 @@
         class="group-data-[sidebar-size=lg]:ltr:md:ml-vertical-menu group-data-[sidebar-size=lg]:rtl:md:mr-vertical-menu group-data-[sidebar-size=md]:ltr:ml-vertical-menu-md group-data-[sidebar-size=md]:rtl:mr-vertical-menu-md group-data-[sidebar-size=sm]:ltr:ml-vertical-menu-sm group-data-[sidebar-size=sm]:rtl:mr-vertical-menu-sm pt-[calc(theme('spacing.header')_*_1)] pb-[calc(theme('spacing.header')_*_0.8)] px-4 group-data-[navbar=bordered]:pt-[calc(theme('spacing.header')_*_1.3)] group-data-[navbar=hidden]:pt-0 group-data-[layout=horizontal]:mx-auto group-data-[layout=horizontal]:max-w-screen-2xl group-data-[layout=horizontal]:px-0 group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:ltr:md:ml-auto group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:rtl:md:mr-auto group-data-[layout=horizontal]:md:pt-[calc(theme('spacing.header')_*_1.6)] group-data-[layout=horizontal]:px-3 group-data-[layout=horizontal]:group-data-[navbar=hidden]:pt-[calc(theme('spacing.header')_*_0.9)]">
         <div class="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
             <div class="flex flex-col gap-2 py-4 md:flex-row md:items-center print:hidden">
-                
-                
+
+
             </div>
             <div class="grid grid-cols-12 2xl:grid-cols-12 gap-x-5">
                 <div class="col-span-12 md:order-1 xl:col-span-8 2xl:col-span-6">
@@ -63,6 +63,12 @@
                                 by</th>
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Confirmed
                                 by</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Sender
+                                Name
+                                by</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Receiver
+                                Name
+                                by</th>
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Status
                             </th>
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">amount
@@ -84,8 +90,21 @@
                                 <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
                                     {{ $value->perfomed_by }}
                                 </td>
+                                @if ($value->confirmed_by == null)
+                                      <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
+                                            <span class="px-2.5 py-0.5 text-xs inline-block font-medium rounded border bg-slate-100 border-slate-200 text-slate-500 dark:bg-slate-500/20 dark:border-slate-500/20 dark:text-zink-200">Pending</span>
+                                        </td>
+                                @else
+                                    <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
+                                        {{ $value->confirmed_by }}
+                                    </td>
+                                @endif
+
                                 <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                    {{ $value->confirmed_by }}
+                                    {{ $value->sender_name }}
+                                </td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
+                                    {{ $value->receiver_name }}
                                 </td>
 
                                 {{ $value->telephone }}</td>
@@ -96,7 +115,7 @@
                                     @elseif($value->status == 'Pending')
                                         <span
                                             class="px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-yellow-100 border-transparent text-yellow-500 dark:bg-yellow-500/20 dark:border-transparent">{{ $value->status }}</span>
-                                    @elseif($value->status == 'Declined')
+                                    @elseif($value->status == 'Cancelled')
                                         <span
                                             class="px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-red-100 border-transparent text-red-500 dark:bg-red-500/20 dark:border-transparent">{{ $value->status }}</span>
                                     @else

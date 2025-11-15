@@ -16,10 +16,12 @@
         "laravel/ui": "*",
         "php-flasher/flasher-laravel": "^2.1",
         "php-flasher/flasher-toastr": "^2.1",
+        "silviolleite/laravelpwa": "^2.0",
         "yoeunes/toastr": "^3.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "jn-jairo/laravel-ngrok": "^3.0",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",
         "laravel/sail": "^1.41",

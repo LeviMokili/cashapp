@@ -21,29 +21,31 @@
                     <div class="card">
                         <div class="card-body">
                             <h6 class="mb-4 text-15 grow"></h6>
-                            <form id="transferForm" action="{{ route('hr.LeavesManage.create-leave-employee') }}" method="POST">
+                            <form id="transferForm" action="{{ route('hr.LeavesManage.create-leave-employee') }}"
+                                method="POST">
                                 @csrf
 
                                 <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-12">
                                     <!-- Date Field -->
                                     <div class="xl:col-span-6">
                                         <div>
-                                            <label for="date_transfer" class="inline-block mb-2 text-base font-medium">Date</label>
+                                            <label for="date_transfer"
+                                                class="inline-block mb-2 text-base font-medium">Date</label>
                                             <input type="text" name="date_transfer" id="date_transfer"
                                                 class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200 @error('date_transfer') is-invalid @enderror"
                                                 placeholder="Select date" data-provider="flatpickr" data-date-format="Y-m-d"
-                                                value="{{ old('date_transfer') }}"
-                                                onchange="generateReferenceCode()">
+                                                value="{{ old('date_transfer') }}" onchange="generateReferenceCode()">
                                             @error('date_transfer')
                                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
-                                    
+
                                     <!-- Reference Code Field -->
                                     <div class="xl:col-span-6">
                                         <div>
-                                            <label for="reference_code" class="inline-block mb-2 text-base font-medium">Reference Code</label>
+                                            <label for="reference_code"
+                                                class="inline-block mb-2 text-base font-medium">Reference Code</label>
                                             <input type="text" name="reference_code" id="reference_code"
                                                 class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                                 value="{{ old('reference_code') }}" readonly>
@@ -52,7 +54,8 @@
 
                                     <!-- Sender Name -->
                                     <div class="xl:col-span-6">
-                                        <label for="sender_name" class="inline-block mb-2 text-base font-medium">Sender Name</label>
+                                        <label for="sender_name" class="inline-block mb-2 text-base font-medium">Sender
+                                            Name</label>
                                         <input type="text" name="sender_name" id="sender_name"
                                             class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200 @error('sender_name') is-invalid @enderror"
                                             value="{{ old('sender_name') }}">
@@ -63,7 +66,8 @@
 
                                     <!-- Receiver Name -->
                                     <div class="xl:col-span-6">
-                                        <label for="receiver_name" class="inline-block mb-2 text-base font-medium">Receiver Name</label>
+                                        <label for="receiver_name" class="inline-block mb-2 text-base font-medium">Receiver
+                                            Name</label>
                                         <input type="text" name="receiver_name" id="receiver_name"
                                             class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200 @error('receiver_name') is-invalid @enderror"
                                             value="{{ old('receiver_name') }}">
@@ -74,29 +78,41 @@
 
                                     <!-- City From -->
                                     <div class="xl:col-span-6">
-                                        <label for="ville_provenance" class="inline-block mb-2 text-base font-medium">City From</label>
+                                        <label for="ville_provenance" class="inline-block mb-2 text-base font-medium">City
+                                            From</label>
                                         <select name="ville_provenance" id="ville_provenance"
                                             class="form-input border-slate-200 focus:outline-none focus:border-custom-500"
                                             data-choices="" data-choices-search-false="">
                                             <option value="Butembo 1" {{ old('ville_provenance') == 'Butembo 1' ? 'selected' : '' }}>Butembo 1</option>
                                             <option value="Butembo 2" {{ old('ville_provenance') == 'Butembo 2' ? 'selected' : '' }}>Butembo 2</option>
-                                            <option value="Beni" {{ old('ville_provenance') == 'Beni' ? 'selected' : '' }}>Beni</option>
-                                            <option value="Bunia" {{ old('ville_provenance') == 'Bunia' ? 'selected' : '' }}>Bunia</option>
-                                            <option value="Durba" {{ old('ville_provenance') == 'Durba' ? 'selected' : '' }}>Durba</option>
-                                            <option value="Arua" {{ old('ville_provenance') == 'Arua' ? 'selected' : '' }}>Arua</option>
+                                            <option value="Beni" {{ old('ville_provenance') == 'Beni' ? 'selected' : '' }}>
+                                                Beni</option>
+                                            <option value="Bunia" {{ old('ville_provenance') == 'Bunia' ? 'selected' : '' }}>
+                                                Bunia</option>
+                                            <option value="Durba" {{ old('ville_provenance') == 'Durba' ? 'selected' : '' }}>
+                                                Durba</option>
+                                            <option value="Arua" {{ old('ville_provenance') == 'Arua' ? 'selected' : '' }}>
+                                                Arua</option>
                                             <option value="Kisangani" {{ old('ville_provenance') == 'Kisangani' ? 'selected' : '' }}>Kisangani</option>
                                             <option value="Kinshasa" {{ old('ville_provenance') == 'Kinshasa' ? 'selected' : '' }}>Kinshasa</option>
-                                            <option value="Goma" {{ old('ville_provenance') == 'Goma' ? 'selected' : '' }}>Goma</option>
+                                            <option value="Goma" {{ old('ville_provenance') == 'Goma' ? 'selected' : '' }}>
+                                                Goma</option>
                                             <option value="Bukavu" {{ old('ville_provenance') == 'Bukavu' ? 'selected' : '' }}>Bukavu</option>
-                                            <option value="Isiro" {{ old('ville_provenance') == 'Isiro' ? 'selected' : '' }}>Isiro</option>
+                                            <option value="Isiro" {{ old('ville_provenance') == 'Isiro' ? 'selected' : '' }}>
+                                                Isiro</option>
                                             <option value="Kampala" {{ old('ville_provenance') == 'Kampala' ? 'selected' : '' }}>Kampala</option>
                                             <option value="Daresalam" {{ old('ville_provenance') == 'Daresalam' ? 'selected' : '' }}>Daresalam</option>
                                             <option value="Nairobi" {{ old('ville_provenance') == 'Nairobi' ? 'selected' : '' }}>Nairobi</option>
-                                            <option value="China" {{ old('ville_provenance') == 'China' ? 'selected' : '' }}>China</option>
-                                            <option value="Dubai" {{ old('ville_provenance') == 'Dubai' ? 'selected' : '' }}>Dubai</option>
-                                            <option value="India" {{ old('ville_provenance') == 'India' ? 'selected' : '' }}>India</option>
-                                            <option value="Moku" {{ old('ville_provenance') == 'Moku' ? 'selected' : '' }}>Moku</option>
-                                            <option value="Wanga" {{ old('ville_provenance') == 'Wanga' ? 'selected' : '' }}>Wanga</option>
+                                            <option value="China" {{ old('ville_provenance') == 'China' ? 'selected' : '' }}>
+                                                China</option>
+                                            <option value="Dubai" {{ old('ville_provenance') == 'Dubai' ? 'selected' : '' }}>
+                                                Dubai</option>
+                                            <option value="India" {{ old('ville_provenance') == 'India' ? 'selected' : '' }}>
+                                                India</option>
+                                            <option value="Moku" {{ old('ville_provenance') == 'Moku' ? 'selected' : '' }}>
+                                                Moku</option>
+                                            <option value="Wanga" {{ old('ville_provenance') == 'Wanga' ? 'selected' : '' }}>
+                                                Wanga</option>
                                         </select>
                                         @error('ville_provenance')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -105,29 +121,41 @@
 
                                     <!-- City To -->
                                     <div class="xl:col-span-6">
-                                        <label for="ville_destination" class="inline-block mb-2 text-base font-medium">City To</label>
+                                        <label for="ville_destination" class="inline-block mb-2 text-base font-medium">City
+                                            To</label>
                                         <select name="ville_destination" id="ville_destination"
                                             class="form-input border-slate-200 focus:outline-none focus:border-custom-500"
                                             data-choices="" data-choices-search-false="">
                                             <option value="Butembo 1" {{ old('ville_destination') == 'Butembo 1' ? 'selected' : '' }}>Butembo 1</option>
                                             <option value="Butembo 2" {{ old('ville_destination') == 'Butembo 2' ? 'selected' : '' }}>Butembo 2</option>
-                                            <option value="Beni" {{ old('ville_destination') == 'Beni' ? 'selected' : '' }}>Beni</option>
-                                            <option value="Bunia" {{ old('ville_destination') == 'Bunia' ? 'selected' : '' }}>Bunia</option>
-                                            <option value="Durba" {{ old('ville_destination') == 'Durba' ? 'selected' : '' }}>Durba</option>
-                                            <option value="Arua" {{ old('ville_destination') == 'Arua' ? 'selected' : '' }}>Arua</option>
+                                            <option value="Beni" {{ old('ville_destination') == 'Beni' ? 'selected' : '' }}>
+                                                Beni</option>
+                                            <option value="Bunia" {{ old('ville_destination') == 'Bunia' ? 'selected' : '' }}>
+                                                Bunia</option>
+                                            <option value="Durba" {{ old('ville_destination') == 'Durba' ? 'selected' : '' }}>
+                                                Durba</option>
+                                            <option value="Arua" {{ old('ville_destination') == 'Arua' ? 'selected' : '' }}>
+                                                Arua</option>
                                             <option value="Kisangani" {{ old('ville_destination') == 'Kisangani' ? 'selected' : '' }}>Kisangani</option>
                                             <option value="Kinshasa" {{ old('ville_destination') == 'Kinshasa' ? 'selected' : '' }}>Kinshasa</option>
-                                            <option value="Goma" {{ old('ville_destination') == 'Goma' ? 'selected' : '' }}>Goma</option>
+                                            <option value="Goma" {{ old('ville_destination') == 'Goma' ? 'selected' : '' }}>
+                                                Goma</option>
                                             <option value="Bukavu" {{ old('ville_destination') == 'Bukavu' ? 'selected' : '' }}>Bukavu</option>
-                                            <option value="Isiro" {{ old('ville_destination') == 'Isiro' ? 'selected' : '' }}>Isiro</option>
+                                            <option value="Isiro" {{ old('ville_destination') == 'Isiro' ? 'selected' : '' }}>
+                                                Isiro</option>
                                             <option value="Kampala" {{ old('ville_destination') == 'Kampala' ? 'selected' : '' }}>Kampala</option>
                                             <option value="Daresalam" {{ old('ville_destination') == 'Daresalam' ? 'selected' : '' }}>Daresalam</option>
                                             <option value="Nairobi" {{ old('ville_destination') == 'Nairobi' ? 'selected' : '' }}>Nairobi</option>
-                                            <option value="China" {{ old('ville_destination') == 'China' ? 'selected' : '' }}>China</option>
-                                            <option value="Dubai" {{ old('ville_destination') == 'Dubai' ? 'selected' : '' }}>Dubai</option>
-                                            <option value="India" {{ old('ville_destination') == 'India' ? 'selected' : '' }}>India</option>
-                                            <option value="Moku" {{ old('ville_destination') == 'Moku' ? 'selected' : '' }}>Moku</option>
-                                            <option value="Wanga" {{ old('ville_destination') == 'Wanga' ? 'selected' : '' }}>Wanga</option>
+                                            <option value="China" {{ old('ville_destination') == 'China' ? 'selected' : '' }}>
+                                                China</option>
+                                            <option value="Dubai" {{ old('ville_destination') == 'Dubai' ? 'selected' : '' }}>
+                                                Dubai</option>
+                                            <option value="India" {{ old('ville_destination') == 'India' ? 'selected' : '' }}>
+                                                India</option>
+                                            <option value="Moku" {{ old('ville_destination') == 'Moku' ? 'selected' : '' }}>
+                                                Moku</option>
+                                            <option value="Wanga" {{ old('ville_destination') == 'Wanga' ? 'selected' : '' }}>
+                                                Wanga</option>
                                         </select>
                                         @error('ville_destination')
                                             <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -136,7 +164,8 @@
 
                                     <!-- Guichetier Provenance -->
                                     <div class="xl:col-span-6">
-                                        <label for="guichetier_provenance" class="inline-block mb-2 text-base font-medium">Guichetier de provenance</label>
+                                        <label for="guichetier_provenance"
+                                            class="inline-block mb-2 text-base font-medium">Guichetier de provenance</label>
                                         <input type="text" name="guichetier_provenance" id="guichetier_provenance"
                                             class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200 @error('guichetier_provenance') is-invalid @enderror"
                                             value="{{ old('guichetier_provenance') }}">
@@ -147,7 +176,9 @@
 
                                     <!-- Guichetier Destination -->
                                     <div class="xl:col-span-6">
-                                        <label for="guichetier_destination" class="inline-block mb-2 text-base font-medium">Guichetier de destination</label>
+                                        <label for="guichetier_destination"
+                                            class="inline-block mb-2 text-base font-medium">Guichetier de
+                                            destination</label>
                                         <input type="text" name="guichetier_destination" id="guichetier_destination"
                                             class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200 @error('guichetier_destination') is-invalid @enderror"
                                             value="{{ old('guichetier_destination') }}">
@@ -159,7 +190,8 @@
                                     <!-- Telephone -->
                                     <div class="xl:col-span-6">
                                         <div>
-                                            <label for="telephone" class="inline-block mb-2 text-base font-medium">Telephone</label>
+                                            <label for="telephone"
+                                                class="inline-block mb-2 text-base font-medium">Telephone</label>
                                             <input type="tel" name="telephone" id="telephone"
                                                 class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                                 value="{{ old('telephone') }}">
@@ -172,10 +204,12 @@
                                     <!-- Amount -->
                                     <div class="xl:col-span-6">
                                         <div>
-                                            <label for="amount" class="inline-block mb-2 text-base font-medium">Amount</label>
-                                            <input type="number" name="amount" id="amount" step="0.01"
+                                            <label for="amount_display"
+                                                class="inline-block mb-2 text-base font-medium">Amount</label>
+                                            <input type="text" name="amount_display" id="amount_display"
                                                 class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                                value="{{ old('amount') }}">
+                                                placeholder="0" autocomplete="off">
+                                            <input type="hidden" name="amount" id="amount" value="{{ old('amount') }}">
                                             @error('amount')
                                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                                             @enderror
@@ -187,7 +221,8 @@
                                     <button type="reset" id="reset_btn"
                                         class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">Reset</button>
                                     <button type="submit" id="submit_btn"
-                                        class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Add Transfer</button>
+                                        class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Add
+                                        Transfer</button>
                                 </div>
                             </form>
                         </div>
@@ -206,6 +241,37 @@
         if (document.getElementById('date_transfer').value) {
             generateReferenceCode();
         }
+
+        // Initialize amount formatting
+        const amountDisplay = document.getElementById('amount_display');
+        const amountHidden = document.getElementById('amount');
+
+        // Format number with commas
+        function formatNumber(num) {
+            num = num.toString().replace(/,/g, '');
+            const parts = num.split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            return parts.join('.');
+        }
+
+        // Set initial value if exists
+        if (amountHidden.value) {
+            amountDisplay.value = formatNumber(amountHidden.value);
+        }
+
+        amountDisplay.addEventListener('input', function(e) {
+            let value = e.target.value;
+            value = value.replace(/[^\d.]/g, '');
+            
+            const parts = value.split('.');
+            if (parts.length > 2) {
+                value = parts[0] + '.' + parts.slice(1).join('');
+            }
+            
+            const formattedValue = formatNumber(value);
+            e.target.value = formattedValue;
+            amountHidden.value = value;
+        });
     });
 
     function generateReferenceCode() {
@@ -217,7 +283,6 @@
             return;
         }
 
-        // Show loading state
         referenceInput.value = 'Generating...';
 
         fetch('{{ route("transfers.get-reference") }}?date=' + dateInput.value, {
@@ -241,9 +306,10 @@
         });
     }
 
-    // Reset form handler
     document.getElementById('reset_btn').addEventListener('click', function() {
         document.getElementById('reference_code').value = '';
+        document.getElementById('amount_display').value = '';
+        document.getElementById('amount').value = '';
     });
 </script>
 @endsection

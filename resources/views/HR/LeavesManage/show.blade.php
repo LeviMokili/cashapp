@@ -137,18 +137,31 @@
 
         /* Print Styles */
         @media print {
-            body {
-                background-color: white;
-                padding: 0;
-                display: block;
+
+            @page {
+                margin: 0;
+                size: auto;
             }
 
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* keep your page content full width */
             .payment-success {
+                margin: 0;
                 box-shadow: none;
                 border-radius: 0;
                 max-width: 100%;
-                padding: 20px;
-                margin: 0;
+            }
+
+            /* hide any in-page elements you don't want printed */
+            .print\\:hidden,
+            .no-print {
+                display: none !important;
             }
 
             .action-button,
@@ -189,11 +202,26 @@
                 color: #666;
                 white-space: nowrap;
             }
+
+
+            footer,
+            .footer,
+            .site-footer,
+            .app-footer,
+            .layout-footer,
+            #footer,
+            .page-footer {
+                display: none !important;
+                visibility: hidden !important;
+                height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
         }
 
         /* Print-specific receipt styling */
         .receipt-header {
-            display: none;
+            display: visible;
         }
 
         @media print {
@@ -232,6 +260,27 @@
             color: #666;
             text-align: center;
         }
+
+        /* company text - hidden on screen, shown on print at page bottom */
+        .receipt-company {
+            display: none;
+        }
+
+        @media print {
+            .receipt-company {
+                display: block !important;
+                position: fixed;
+                bottom: 12mm; /* adjust distance from bottom */
+                left: 0;
+                width: 100%;
+                text-align: center;
+                font-size: 13px;
+                color: #666;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                z-index: 9999;
+            }
+        }
     </style>
     <div
         class="group-data-[sidebar-size=lg]:ltr:md:ml-vertical-menu group-data-[sidebar-size=lg]:rtl:md:mr-vertical-menu group-data-[sidebar-size=md]:ltr:ml-vertical-menu-md group-data-[sidebar-size=md]:rtl:mr-vertical-menu-md group-data-[sidebar-size=sm]:ltr:ml-vertical-menu-sm group-data-[sidebar-size=sm]:rtl:mr-vertical-menu-sm pt-[calc(theme('spacing.header')_*_1)] pb-[calc(theme('spacing.header')_*_0.8)] px-4 group-data-[navbar=bordered]:pt-[calc(theme('spacing.header')_*_1.3)] group-data-[navbar=hidden]:pt-0 group-data-[layout=horizontal]:mx-auto group-data-[layout=horizontal]:max-w-screen-2xl group-data-[layout=horizontal]:px-0 group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:ltr:md:ml-auto group-data-[layout=horizontal]:group-data-[sidebar-size=lg]:rtl:md:mr-auto group-data-[layout=horizontal]:md:pt-[calc(theme('spacing.header')_*_1.6)] group-data-[layout=horizontal]:px-3 group-data-[layout=horizontal]:group-data-[navbar=hidden]:pt-[calc(theme('spacing.header')_*_0.9)]">
@@ -244,12 +293,20 @@
             </div>
             <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5">
                 <div class="xl:col-span-9">
-
                     <div class="payment-success">
-
-
-                        <div class="success-icon">
-                            <i class="fas fa-check"></i>
+                        <!-- Receipt Icon - Centered like in screenshot -->
+                        <div class="flex justify-center mb-4">
+                            <div
+                                class="flex items-center justify-center rounded-full size-16 bg-green-100 border-4 border-green-50 shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="text-green-600">
+                                    <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z">
+                                    </path>
+                                    <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+                                    <path d="M12 17.5v-11"></path>
+                                </svg>
+                            </div>
                         </div>
 
                         <h1 class="success-title">Payment Success!</h1>
@@ -278,6 +335,10 @@
                                 <div class="detail-label">Receiver name</div>
                                 <div class="detail-value">{{ $transfer->receiver_name }}</div>
                             </div>
+                            <div class="detail-row">
+                                <div class="detail-label">Status</div>
+                                <div class="detail-value">{{ $transfer->status }}</div>
+                            </div>
 
                             <div class="detail-row">
                                 <div class="detail-label">Amount</div>
@@ -285,10 +346,9 @@
                             </div>
 
                             <!-- Signature field - only visible when printing -->
-                            <div class="signature-field" style="heght: 80px;">
+                            <div class="signature-field" style="height: 80px;">
                                 <div class="signature-label">Authorized Signature</div>
                                 <!-- <div class="signature-line"></div> -->
-
                             </div>
                         </div>
 
@@ -296,13 +356,12 @@
                             <i class="fas fa-file-pdf"></i>
                             Print Receipt
                         </button>
-
-
-
-
                     </div>
                 </div>
             </div>
+
+            <!-- company name printed at bottom center -->
+            <div class="receipt-company">Tic-Tac</div>
         </div>
     </div>
 @endsection
