@@ -1,2 +1,5 @@
-# Laravel-12-HR-System-Management
-Laravel-12-HR-System-Management
+![WhatsApp Image 2025-11-14 at 5 22 26 PM](https://github.com/user-attachments/assets/cc490dd9-24b4-438c-8b84-1ea619be53aa)
+![WhatsApp Image 2025-11-14 at 5 29 18 PM](https://github.com/user-attachments/assets/4e782758-33a5-42b0-9694-bd69734c9abb)
+![WhatsApp Image 2025-11-14 at 5 24 28 PM](https://github.com/user-attachments/assets/e6e593dc-15b1-422b-b07e-7d623cb8b5bb)
+![WhatsApp Image 2025-11-14 at 5 27 42 PM](https://github.com/user-attachments/assets/1e06360b-454a-4a82-b5a3-bc2672fa7f17)
+![WhatsApp Image 2025-11-14 at 5 28 23 PM](https://github.com/user-attachments/assets/71d16bdd-4333-423a-805f-1f64f164167a)
