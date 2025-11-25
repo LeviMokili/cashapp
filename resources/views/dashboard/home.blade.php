@@ -7,19 +7,19 @@
         <div class="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
             <div class="flex flex-col gap-2 py-4 md:flex-row md:items-center print:hidden">
                 <div class="grow">
-                    <h5 class="text-16">HR</h5>
+                    <h5 class="text-16">ADMIN</h5>
                 </div>
                 <ul class="flex items-center gap-2 text-sm font-normal shrink-0">
                     <li
                         class="relative before:content-['\ea54'] before:font-remix ltr:before:-right-1 rtl:before:-left-1  before:absolute before:text-[18px] before:-top-[3px] ltr:pr-4 rtl:pl-4 before:text-slate-400 dark:text-zink-200">
                         <a href="#!" class="text-slate-400 dark:text-zink-200">Dashboards</a>
                     </li>
-                    <li class="text-slate-700 dark:text-zink-100">HR</li>
+                    <li class="text-slate-700 dark:text-zink-100">ADMIN</li>
                 </ul>
             </div>
             <div class="grid grid-cols-12 2xl:grid-cols-12 gap-x-5">
                 <div class="col-span-12 md:order-1 xl:col-span-8 2xl:col-span-6">
-                    <h5 class="mb-2">Welcome StarCode Kh 🎉</h5>
+                    
                 </div>
 
                 <div class="col-span-12 md:order-3 lg:col-span-6 2xl:col-span-3 card">
@@ -257,9 +257,12 @@
                     </div>
                 </div>
 
-                <table id="alternativePagination" class="display" style="width:100%">
-                    <thead>
-                        <tr>
+              
+
+
+                 <table id="alternativePagination" class="display" style="width:100%">
+                        <thead>
+                             <tr>
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">No</th>
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Date</th>
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Reference
@@ -283,9 +286,10 @@
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Amount
                             </th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($transfers as $key => $value)
+                        </thead>
+                        <tbody>
+
+                          @foreach($transfers as $key => $value)
                             <tr>
                                 <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">{{ ++$key }}</td>
                                 <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
@@ -330,12 +334,12 @@
                                     @endif
                                 </td>
                                 <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                    {{ $value->amount }}
+                                    {{ number_format($value->amount, 2)  }}
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
             </div>
         </div>
 
@@ -422,85 +426,233 @@
             });
         </script>
     @endif
+@section('script')
+<script src="{{ URL::to('assets/js/pages/dashboards-hr.init.js') }}"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
- @section('script')
-   <script src="{{ URL::to('assets/js/pages/dashboards-hr.init.js') }}"></script>
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- DataTables core -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-        <!-- DataTables core -->
-        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<!-- DataTables Buttons -->
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
 
-        <!-- DataTables Buttons -->
-        <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<!-- HTML5 export + Print support -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
 
-        <!-- HTML5 export + Print support -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
-    <!-- COMMENT OUT OR REMOVE THIS LINE -->
-    {{-- <script src="{{ URL::to('assets/js/pages/dashboards-hr.init.js') }}"></script> --}}
-
-    <!-- Add the corrected script from above artifact -->
-    <script>
-            $(document).ready(function () {
-                const table = $('#alternativePagination').DataTable({
-                    dom: 'Bfrtip',
-                    responsive: true,
-                    buttons: [
-                        { extend: 'print', title: 'Recent Transfers Report', exportOptions: { columns: ':visible' } },
-                        { extend: 'pdfHtml5', title: 'Recent Transfers Report', exportOptions: { columns: ':visible' } },
-                        { extend: 'excelHtml5', title: 'Recent Transfers Report', exportOptions: { columns: ':visible' } },
-                        { extend: 'csvHtml5', title: 'Recent Transfers Report', exportOptions: { columns: ':visible' } }
-                    ],
-                    language: {
-                        paginate: {
-                            previous: '<i class="fas fa-chevron-left"></i>',
-                            next: '<i class="fas fa-chevron-right"></i>'
-                        }
+<script>
+    $(document).ready(function () {
+        const table = $('#alternativePagination').DataTable({
+            dom: 'Bfrtip',
+            responsive: false, // Disable responsive for better print control
+            scrollX: true, // Enable horizontal scrolling
+            buttons: [
+                { 
+                    extend: 'print', 
+                    title: 'Recent Transfers Report', 
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] // All 12 columns
+                    },
+                    customize: function (win) {
+                        // Add custom CSS for print
+                        $(win.document.body).find('table').addClass('print-table');
+                        
+                        // Add landscape orientation and custom styles
+                        $(win.document.head).append(`
+                            <style>
+                                @page { 
+                                    size: landscape; 
+                                    margin: 0.5cm; 
+                                }
+                                body { 
+                                    margin: 0; 
+                                    padding: 20px; 
+                                    font-family: Arial, sans-serif; 
+                                    font-size: 8pt; 
+                                }
+                                .print-table {
+                                    width: 100% !important;
+                                    table-layout: fixed !important;
+                                    border-collapse: collapse !important;
+                                }
+                                .print-table th,
+                                .print-table td {
+                                    padding: 3px !important;
+                                    border: 1px solid #ddd !important;
+                                    font-size: 7pt !important;
+                                    white-space: nowrap !important;
+                                    overflow: hidden !important;
+                                    text-overflow: ellipsis !important;
+                                }
+                                .print-table th {
+                                    background-color: #f8f9fa !important;
+                                    font-weight: bold !important;
+                                }
+                                h1 {
+                                    text-align: center;
+                                    margin-bottom: 15px;
+                                    font-size: 14pt;
+                                }
+                                /* Hide unnecessary elements */
+                                .dataTables_length,
+                                .dataTables_filter,
+                                .dataTables_info,
+                                .dataTables_paginate,
+                                .dt-buttons,
+                                .print-hide {
+                                    display: none !important;
+                                }
+                            </style>
+                        `);
+                        
+                        // Add a title
+                        $(win.document.body).prepend('<h1>Recent Transfers Report</h1>');
                     }
-                });
-
-                // Hide default DataTables buttons
-                table.buttons().container().hide();
-
-                // Bind your custom buttons to DataTables export buttons
-                $('#printButton').on('click', function () {
-                    table.button(0).trigger(); // Print
-                });
-
-                $('#pdfButton').on('click', function () {
-                    table.button(1).trigger(); // PDF
-                });
-
-                $('#excelButton').on('click', function () {
-                    table.button(2).trigger(); // Excel
-                });
-
-                $('#csvButton').on('click', function () {
-                    table.button(3).trigger(); // CSV
-                });
-            });
-        </script>
-
-    <style>
-            .dt-button {
-                margin-right: 5px;
-                margin-bottom: 5px;
-            }
-
-            .dataTables_wrapper .dt-buttons {
-                float: right;
-            }
-
-            @media (max-width: 767px) {
-                .dataTables_wrapper .dt-buttons {
-                    float: none;
-                    text-align: center;
+                },
+                { 
+                    extend: 'pdfHtml5', 
+                    title: 'Recent Transfers Report', 
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                    },
+                    orientation: 'landscape',
+                    pageSize: 'A4',
+                    customize: function (doc) {
+                        doc.defaultStyle.fontSize = 7;
+                        doc.styles.tableHeader.fontSize = 7;
+                        doc.content[1].table.widths = Array(12).fill('*');
+                    }
+                },
+                { 
+                    extend: 'excelHtml5', 
+                    title: 'Recent Transfers Report', 
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                    }
+                },
+                { 
+                    extend: 'csvHtml5', 
+                    title: 'Recent Transfers Report', 
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                    }
+                }
+            ],
+            language: {
+                paginate: {
+                    previous: '<i class="fas fa-chevron-left"></i>',
+                    next: '<i class="fas fa-chevron-right"></i>'
                 }
             }
-        </style>
+        });
+
+        // Hide default DataTables buttons
+        table.buttons().container().hide();
+
+        // Bind your custom buttons to DataTables export buttons
+        $('#printButton').on('click', function () {
+            table.button(0).trigger(); // Print
+        });
+
+        $('#pdfButton').on('click', function () {
+            table.button(1).trigger(); // PDF
+        });
+
+        $('#excelButton').on('click', function () {
+            table.button(2).trigger(); // Excel
+        });
+
+        $('#csvButton').on('click', function () {
+            table.button(3).trigger(); // CSV
+        });
+    });
+</script>
+
+<style>
+    .dt-button {
+        margin-right: 5px;
+        margin-bottom: 5px;
+    }
+
+    .dataTables_wrapper .dt-buttons {
+        float: right;
+    }
+    .dataTables_length,
+.dataTables_filter,
+.dataTables_info,
+.dataTables_paginate {
+    display: none !important;
+}
+
+    /* Ensure table container is properly sized */
+    #alternativePagination_wrapper {
+        overflow-x: auto;
+    }
+
+    /* Print-specific styles */
+    @media print {
+        body {
+            margin: 0 !important;
+            padding: 20px !important;
+            background: white !important;
+            font-size: 8pt !important;
+        }
+        
+        .card, .card-body {
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            background: white !important;
+        }
+        
+        table {
+            width: 100% !important;
+            font-size: 7pt !important;
+            table-layout: fixed !important;
+        }
+        
+        th, td {
+            padding: 2px !important;
+            border: 1px solid #ddd !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+        
+        th {
+            background-color: #f8f9fa !important;
+            font-weight: bold !important;
+        }
+        
+        /* Hide unnecessary elements during print */
+        .print-hide, 
+        .dataTables_length, 
+        .dataTables_filter, 
+        .dataTables_info, 
+        .dataTables_paginate, 
+        .dt-buttons,
+        .btn,
+        .flex-wrap {
+            display: none !important;
+        }
+        
+        /* Ensure proper page breaks */
+        tr {
+            page-break-inside: avoid;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .dataTables_wrapper .dt-buttons {
+            float: none;
+            text-align: center;
+        }
+    }
+</style>
 @endsection
 @endsection

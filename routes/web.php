@@ -42,6 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logs', [AdminController::class, 'loadlogs'])->name('admin.logs');
     Route::get('/dashboard/chart-data', [AdminController::class, 'getChartDataAjax'])->name('admin.dashboard.chartData');
 
+
     // Employee management routes
     Route::get('users/list', [AdminController::class, 'userslist'])->name('users.list');
     Route::post('/employees', [AdminController::class, 'addEmployee'])->name('employee.add');
