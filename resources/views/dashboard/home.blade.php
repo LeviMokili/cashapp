@@ -257,12 +257,9 @@
                     </div>
                 </div>
 
-              
-
-
-                 <table id="alternativePagination" class="display" style="width:100%">
-                        <thead>
-                             <tr>
+                <table id="alternativePagination" class="display" style="width:100%">
+                    <thead>
+                        <tr>
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">No</th>
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Date</th>
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Reference
@@ -286,10 +283,9 @@
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Amount
                             </th>
                         </tr>
-                        </thead>
-                        <tbody>
-
-                          @foreach($transfers as $key => $value)
+                    </thead>
+                    <tbody>
+                        @foreach($transfers as $key => $value)
                             <tr>
                                 <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">{{ ++$key }}</td>
                                 <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
@@ -338,11 +334,10 @@
                                 </td>
                             </tr>
                         @endforeach
-                        </tbody>
-                    </table>
+                    </tbody>
+                </table>
             </div>
         </div>
-
 
         
         <!-- container-fluid -->
@@ -426,6 +421,7 @@
             });
         </script>
     @endif
+
 @section('script')
 <script src="{{ URL::to('assets/js/pages/dashboards-hr.init.js') }}"></script>
 <!-- jQuery -->
@@ -450,14 +446,25 @@
             dom: 'Bfrtip',
             responsive: false, // Disable responsive for better print control
             scrollX: true, // Enable horizontal scrolling
+            paging: true, 
             buttons: [
                 { 
                     extend: 'print', 
                     title: 'Recent Transfers Report', 
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] // All 12 columns
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], // All 12 columns
+                        modifier: {
+                            search: 'applied',   // print only filtered rows
+                            order: 'applied',
+                            page: 'all'          // include all matched rows, not just current page
+                        },
+                        rows: ':visible'
                     },
                     customize: function (win) {
+                        // Get the current search filter
+                        const currentFilter = table.search();
+                        const filterInfo = currentFilter ? `Filtered by: "${currentFilter}"` : 'All Records';
+                        
                         // Add custom CSS for print
                         $(win.document.body).find('table').addClass('print-table');
                         
@@ -494,8 +501,15 @@
                                 }
                                 h1 {
                                     text-align: center;
-                                    margin-bottom: 15px;
+                                    margin-bottom: 5px;
                                     font-size: 14pt;
+                                }
+                                .filter-info {
+                                    text-align: center;
+                                    margin-bottom: 15px;
+                                    font-size: 9pt;
+                                    color: #666;
+                                    font-style: italic;
                                 }
                                 /* Hide unnecessary elements */
                                 .dataTables_length,
@@ -509,15 +523,29 @@
                             </style>
                         `);
                         
-                        // Add a title
-                        $(win.document.body).prepend('<h1>Recent Transfers Report</h1>');
+                        // Add a title and filter info
+                        $(win.document.body).prepend(
+                            '<h1>Recent Transfers Report</h1>' +
+                            `<div class="filter-info">${filterInfo}</div>`
+                        );
+                        
+                        // Add page numbers
+                        $(win.document.body).append(
+                            '<div style="text-align: center; margin-top: 20px; font-size: 8pt; color: #666;">' +
+                            'Page ' + (win.document.body.querySelectorAll('table')[0].offsetHeight / 1000).toFixed(0) +
+                            '</div>'
+                        );
                     }
                 },
                 { 
                     extend: 'pdfHtml5', 
                     title: 'Recent Transfers Report', 
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+                        modifier: {
+                            search: 'applied' // Export only filtered data
+                        },
+                        rows: ':visible'
                     },
                     orientation: 'landscape',
                     pageSize: 'A4',
@@ -525,20 +553,44 @@
                         doc.defaultStyle.fontSize = 7;
                         doc.styles.tableHeader.fontSize = 7;
                         doc.content[1].table.widths = Array(12).fill('*');
+                        
+                        // Add filter info to PDF
+                        const currentFilter = table.search();
+                        if (currentFilter) {
+                            doc.content.splice(1, 0, {
+                                text: `Filtered by: "${currentFilter}"`,
+                                style: 'filterInfo',
+                                margin: [0, 0, 0, 10]
+                            });
+                        }
+                        
+                        doc.styles.filterInfo = {
+                            fontSize: 8,
+                            color: '#666',
+                            alignment: 'center'
+                        };
                     }
                 },
                 { 
                     extend: 'excelHtml5', 
                     title: 'Recent Transfers Report', 
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+                        modifier: {
+                            search: 'applied' // Export only filtered data
+                        },
+                         rows: ':visible'
                     }
                 },
                 { 
                     extend: 'csvHtml5', 
                     title: 'Recent Transfers Report', 
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+                        modifier: {
+                            search: 'applied' // Export only filtered data
+                        },
+                         rows: ':visible'
                     }
                 }
             ],
@@ -569,6 +621,11 @@
         $('#csvButton').on('click', function () {
             table.button(3).trigger(); // CSV
         });
+
+        // Optional: Add a reset filter button
+        $('#resetFilter').on('click', function () {
+            table.search('').draw();
+        });
     });
 </script>
 
@@ -581,17 +638,13 @@
     .dataTables_wrapper .dt-buttons {
         float: right;
     }
-    .dataTables_length,
-.dataTables_filter,
-.dataTables_info,
-.dataTables_paginate {
+    
+ .dataTables_info {
     display: none !important;
 }
 
     /* Ensure table container is properly sized */
-    #alternativePagination_wrapper {
-        overflow-x: auto;
-    }
+   
 
     /* Print-specific styles */
     @media print {
@@ -629,21 +682,14 @@
             font-weight: bold !important;
         }
         
-        /* Hide unnecessary elements during print */
-        .print-hide, 
-        .dataTables_length, 
-        .dataTables_filter, 
-        .dataTables_info, 
-        .dataTables_paginate, 
-        .dt-buttons,
-        .btn,
-        .flex-wrap {
-            display: none !important;
-        }
-        
         /* Ensure proper page breaks */
         tr {
             page-break-inside: avoid;
+        }
+        
+        /* Hide buttons and other UI elements during print */
+        .btn, .dataTables_filter, .dataTables_length, .dataTables_paginate, .dt-buttons {
+            display: none !important;
         }
     }
 

@@ -161,10 +161,17 @@
                     dom: 'Bfrtip',
                     responsive: true,
                     buttons: [
-                        { extend: 'print', title: 'Recent Transfers Report', exportOptions: { columns: ':visible' } },
-                        { extend: 'pdfHtml5', title: 'Recent Transfers Report', exportOptions: { columns: ':visible' } },
-                        { extend: 'excelHtml5', title: 'Recent Transfers Report', exportOptions: { columns: ':visible' } },
-                        { extend: 'csvHtml5', title: 'Recent Transfers Report', exportOptions: { columns: ':visible' } }
+                        { 
+                            extend: 'print', 
+                            title: 'Recent Transfers Report',
+                             exportOptions: { columns: ':visible', rows: ':visible' },
+                             
+                    
+                    
+                    },
+                        { extend: 'pdfHtml5', title: 'Recent Transfers Report', exportOptions: { columns: ':visible' ,  rows: ':visible'} },
+                        { extend: 'excelHtml5', title: 'Recent Transfers Report', exportOptions: { columns: ':visible', rows: ':visible' } },
+                        { extend: 'csvHtml5', title: 'Recent Transfers Report', exportOptions: { columns: ':visible',  rows: ':visible' } }
                     ],
                     language: {
                         paginate: {
@@ -206,6 +213,54 @@
             .dataTables_wrapper .dt-buttons {
                 float: right;
             }
+
+             /* Print-specific styles */
+    @media print {
+        body {
+            margin: 0 !important;
+            padding: 20px !important;
+            background: white !important;
+            font-size: 8pt !important;
+        }
+        
+        .card, .card-body {
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+            background: white !important;
+        }
+        
+        table {
+            width: 100% !important;
+            font-size: 7pt !important;
+            table-layout: fixed !important;
+        }
+        
+        th, td {
+            padding: 2px !important;
+            border: 1px solid #ddd !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
+        
+        th {
+            background-color: #f8f9fa !important;
+            font-weight: bold !important;
+        }
+        
+        /* Ensure proper page breaks */
+        tr {
+            page-break-inside: avoid;
+        }
+        
+        /* Hide buttons and other UI elements during print */
+        .btn, .dataTables_filter, .dataTables_length, .dataTables_paginate, .dt-buttons {
+            display: none !important;
+        }
+    }
+
 
             @media (max-width: 767px) {
                 .dataTables_wrapper .dt-buttons {
