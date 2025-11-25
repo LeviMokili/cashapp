@@ -40,8 +40,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manage-transfers', [TransferController::class, 'index'])->name('admin.transfers.index');
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::get('/logs', [AdminController::class, 'loadlogs'])->name('admin.logs');
-    Route::get('/dashboard/chart-data', [AdminController::class, 'getChartDataAjax'])->name('admin.dashboard.chartData');
-
+Route::get('/admin/dashboard/chart-ajax', [AdminController::class, 'getChartAjax'])
+     ->name('admin.dashboard.chart.ajax');
 
     // Employee management routes
     Route::get('users/list', [AdminController::class, 'userslist'])->name('users.list');

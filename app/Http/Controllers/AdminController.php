@@ -344,43 +344,43 @@ class AdminController extends Controller
 
     // Add new employee
     public function addEmployee(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email',
-        'role' => 'required|string|max:255',
-        'location' => 'required|string|max:255',
-        'joinDate' => 'required',
-        'status' => 'required|string|max:255',
-        'phone' => 'required|string|max:20',
-    ]);
-
-    try {
-        // ✅ Step 1: Create user (so we get auto-increment ID)
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make('password123'), // Default password
-            'role' => $request->role,
-            'location' => $request->location,
-            'joinDate' => $request->joinDate,
-            'status' => $request->status,
-            'phone' => $request->phone,
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'role' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'joinDate' => 'required',
+            'status' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
         ]);
 
-        // ✅ Step 2: Generate unique employee code
-        $employeeId = 'EMP' . str_pad($user->id, 4, '0', STR_PAD_LEFT);
+        try {
+            // ✅ Step 1: Create user (so we get auto-increment ID)
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make('password123'), // Default password
+                'role' => $request->role,
+                'location' => $request->location,
+                'joinDate' => $request->joinDate,
+                'status' => $request->status,
+                'phone' => $request->phone,
+            ]);
 
-        // ✅ Step 3: Update the employee record
-        $user->update(['employee_id' => $employeeId]);
+            // ✅ Step 2: Generate unique employee code
+            $employeeId = 'EMP' . str_pad($user->id, 4, '0', STR_PAD_LEFT);
 
-        return redirect()->back()->with('success', "Employee added successfully with ID: {$employeeId}");
+            // ✅ Step 3: Update the employee record
+            $user->update(['employee_id' => $employeeId]);
 
-    } catch (\Exception $e) {
-        // ✅ Step 4: Handle any errors gracefully
-        return redirect()->back()->with('error', 'Failed to add employee: ' . $e->getMessage());
+            return redirect()->back()->with('success', "Employee added successfully with ID: {$employeeId}");
+
+        } catch (\Exception $e) {
+            // ✅ Step 4: Handle any errors gracefully
+            return redirect()->back()->with('error', 'Failed to add employee: ' . $e->getMessage());
+        }
     }
-}
 
     // Get employee data for editing
     public function getEmployee($id)
@@ -402,7 +402,7 @@ class AdminController extends Controller
             'phone' => 'required|string|max:20',
         ]);
 
-         $credentials['status'] = 'active';
+        $credentials['status'] = 'active';
 
         try {
             DB::beginTransaction();
@@ -448,4 +448,32 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Failed to delete employee: ' . $e->getMessage());
         }
     }
+
+
+
+    public function getChartAjax(Request $request)
+    {
+        $period = $request->period;
+        $year = $request->year;
+        $month = $request->month;
+        $week = $request->week;
+
+        // Use your existing function to get data:
+        $chartData = $this->chart_data(
+            $period,
+            $year,
+            $month,
+            $week
+        );
+
+        return response()->json([
+            'status' => true,
+            'labels' => $chartData['labels'],
+            'data' => $chartData['data'],
+            'title' => $chartData['title']
+        ]);
+    }
+
 }
+
+
