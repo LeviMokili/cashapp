@@ -158,6 +158,8 @@
         <script>
             $(document).ready(function () {
                 const table = $('#alternativePagination').DataTable({
+                  
+
                     dom: 'Bfrtip',
                     responsive: true,
                     buttons: [

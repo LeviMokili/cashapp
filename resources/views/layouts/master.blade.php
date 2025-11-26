@@ -45,13 +45,13 @@
                 class="flex items-center justify-center px-5 text-center h-header group-data-[layout=horizontal]:hidden group-data-[sidebar-size=sm]:fixed group-data-[sidebar-size=sm]:top-0 group-data-[sidebar-size=sm]:bg-vertical-menu group-data-[sidebar-size=sm]:group-data-[sidebar=dark]:bg-vertical-menu-dark group-data-[sidebar-size=sm]:group-data-[sidebar=brand]:bg-vertical-menu-brand group-data-[sidebar-size=sm]:group-data-[sidebar=modern]:bg-gradient-to-br group-data-[sidebar-size=sm]:group-data-[sidebar=modern]:to-vertical-menu-to-modern group-data-[sidebar-size=sm]:group-data-[sidebar=modern]:from-vertical-menu-form-modern group-data-[sidebar-size=sm]:group-data-[sidebar=modern]:bg-vertical-menu-modern group-data-[sidebar-size=sm]:z-10 group-data-[sidebar-size=sm]:w-[calc(theme('spacing.vertical-menu-sm')_-_1px)] group-data-[sidebar-size=sm]:group-data-[sidebar=dark]:dark:bg-zink-700">
                 <a href=""
                     class="group-data-[sidebar=dark]:hidden group-data-[sidebar=brand]:hidden group-data-[sidebar=modern]:hidden">
-                    TIC-TAK
+                    TIC-TAC
 
                 </a>
                 <a href=""
                     class="hidden group-data-[sidebar=dark]:block group-data-[sidebar=brand]:block group-data-[sidebar=modern]:block">
                     <span class="group-data-[sidebar-size=sm]:hidden overflow-hidden rounded-full">
-                        TIC-TAK
+                        TIC-TAC
                     </span>
 
                 </a>
@@ -245,7 +245,7 @@
                         </div>
                         <div class="hidden lg:block">
                             <div class="ltr:text-right rtl:text-left">
-                                Design & Develop Levi MOKILI / WILSON 
+                                Designed & Developed by LEVI MOKILI / WILSON SIKWAYA
                             </div>
                         </div>
                     </div>
@@ -266,7 +266,7 @@
         class="fixed inset-y-0 flex flex-col w-full transition-transform duration-300 ease-in-out transform bg-white shadow ltr:right-0 rtl:left-0 md:w-96 z-drawer show dark:bg-zink-600">
         <div class="flex justify-between p-4 border-b border-slate-200 dark:border-zink-500">
             <div class="grow">
-                <h5 class="mb-1 text-16">starcode Theme Customizer</h5>
+                <h5 class="mb-1 text-16"></h5>
                 <p class="font-normal text-slate-500 dark:text-zink-200">Choose your themes & layouts etc.</p>
             </div>
             <div class="shrink-0">
@@ -517,9 +517,9 @@
         <div class="flex items-center justify-between gap-3 p-4 border-t border-slate-200 dark:border-zink-500">
             <button type="button" id="reset-layout"
                 class="w-full transition-all duration-200 ease-linear text-slate-500 btn bg-slate-200 border-slate-200 hover:text-slate-600 hover:bg-slate-300 hover:border-slate-300 focus:text-slate-600 focus:bg-slate-300 focus:border-slate-300 focus:ring focus:ring-slate-100">Reset</button>
-            <a href="#!"
+            <!-- <a href="#!"
                 class="w-full text-white transition-all duration-200 ease-linear bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100">Buy
-                Now</a>
+                Now</a> -->
         </div>
     </div>
 

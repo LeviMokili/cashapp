@@ -262,75 +262,44 @@
                         <tr>
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">No</th>
                             <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Date</th>
-                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Reference
-                                Code</th>
-                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Sender
-                                Name</th>
-                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Receiver
-                                Name</th>
-                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">City From
-                            </th>
-                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">City To
-                            </th>
-                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">
-                                Guichetier de provenance</th>
-                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">
-                                Guichetier de destination</th>
-                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Telephone
-                            </th>
-                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Status
-                            </th>
-                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Amount
-                            </th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Reference Code</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Sender Name</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Receiver Name</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">City From</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">City To</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Guichetier de provenance</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Guichetier de destination</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Telephone</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Status</th>
+                            <th class="px-3.5 py-2.5 font-semibold border-b border-slate-200 dark:border-zink-500">Amount</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($transfers as $key => $value)
                             <tr>
                                 <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">{{ ++$key }}</td>
-                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                    {{ $value->date_transfer->format('D-m-Y')  }}
-                                </td>
-                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500"
-                                    style="font-weight:700">
-                                    {{ $value->reference_code }}
-                                </td>
-                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                    {{ $value->sender_name }}
-                                </td>
-                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                    {{ $value->receiver_name }}
-                                </td>
-                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                    {{ $value->ville_provenance }}
-                                </td>
-                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                    {{ $value->ville_destination }}
-                                </td>
-                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                    {{ $value->guichetier_provenance }}
-                                </td>
-                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                    {{ $value->guichetier_destination }}
-                                </td>
-                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                    {{ $value->telephone }}
-                                </td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">{{ $value->date_transfer->format('D-m-Y') }}</td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500" style="font-weight:700">{{ $value->reference_code }}</td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">{{ $value->sender_name }}</td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">{{ $value->receiver_name }}</td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">{{ $value->ville_provenance }}</td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">{{ $value->ville_destination }}</td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">{{ $value->guichetier_provenance }}</td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">{{ $value->guichetier_destination }}</td>
+                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">{{ $value->telephone }}</td>
                                 <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
                                     @if($value->status == 'Confirmed')
-                                        <span
-                                            class="px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent">{{ $value->status }}</span>
+                                        <span class="px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent">{{ $value->status }}</span>
                                     @elseif($value->status == 'Pending')
-                                        <span
-                                            class="px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-yellow-100 border-transparent text-yellow-500 dark:bg-yellow-500/20 dark:border-transparent">{{ $value->status }}</span>
+                                        <span class="px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-yellow-100 border-transparent text-yellow-500 dark:bg-yellow-500/20 dark:border-transparent">{{ $value->status }}</span>
                                     @elseif($value->status == 'Declined')
-                                        <span
-                                            class="px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-red-100 border-transparent text-red-500 dark:bg-red-500/20 dark:border-transparent">{{ $value->status }}</span>
+                                        <span class="px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-red-100 border-transparent text-red-500 dark:bg-red-500/20 dark:border-transparent">{{ $value->status }}</span>
                                     @else
+                                        <span class="px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-gray-100 border-transparent text-gray-500 dark:bg-gray-500/20 dark:border-transparent">{{ $value->status }}</span>
                                     @endif
                                 </td>
                                 <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500">
-                                    {{ number_format($value->amount, 2)  }}
+                                    {{ number_format($value->amount, 2) }}
                                 </td>
                             </tr>
                         @endforeach
@@ -442,33 +411,38 @@
 
 <script>
     $(document).ready(function () {
+        // Initialize DataTable with proper configuration
+
+        $.fn.dataTable.ext.errMode = function (settings, techNote, message) {
+        if (techNote === 18) return;
+        console.warn(message); 
+    };
+
         const table = $('#alternativePagination').DataTable({
-            dom: 'Bfrtip',
+
+                 dom: 'Bfrtip',
             responsive: false, // Disable responsive for better print control
             scrollX: true, // Enable horizontal scrolling
-            paging: true, 
+            paging: true,
             buttons: [
                 { 
                     extend: 'print', 
                     title: 'Recent Transfers Report', 
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], // All 12 columns
+                        columns: ':visible',
                         modifier: {
-                            search: 'applied',   // print only filtered rows
+                            search: 'applied',
                             order: 'applied',
-                            page: 'all'          // include all matched rows, not just current page
-                        },
-                        rows: ':visible'
+                            page: 'all'
+                        }
                     },
                     customize: function (win) {
-                        // Get the current search filter
                         const currentFilter = table.search();
                         const filterInfo = currentFilter ? `Filtered by: "${currentFilter}"` : 'All Records';
                         
-                        // Add custom CSS for print
                         $(win.document.body).find('table').addClass('print-table');
                         
-                        // Add landscape orientation and custom styles
+                        
                         $(win.document.head).append(`
                             <style>
                                 @page { 
@@ -483,7 +457,6 @@
                                 }
                                 .print-table {
                                     width: 100% !important;
-                                    table-layout: fixed !important;
                                     border-collapse: collapse !important;
                                 }
                                 .print-table th,
@@ -511,7 +484,6 @@
                                     color: #666;
                                     font-style: italic;
                                 }
-                                /* Hide unnecessary elements */
                                 .dataTables_length,
                                 .dataTables_filter,
                                 .dataTables_info,
@@ -523,17 +495,9 @@
                             </style>
                         `);
                         
-                        // Add a title and filter info
                         $(win.document.body).prepend(
                             '<h1>Recent Transfers Report</h1>' +
                             `<div class="filter-info">${filterInfo}</div>`
-                        );
-                        
-                        // Add page numbers
-                        $(win.document.body).append(
-                            '<div style="text-align: center; margin-top: 20px; font-size: 8pt; color: #666;">' +
-                            'Page ' + (win.document.body.querySelectorAll('table')[0].offsetHeight / 1000).toFixed(0) +
-                            '</div>'
                         );
                     }
                 },
@@ -541,20 +505,17 @@
                     extend: 'pdfHtml5', 
                     title: 'Recent Transfers Report', 
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+                        columns: ':visible',
                         modifier: {
-                            search: 'applied' // Export only filtered data
-                        },
-                        rows: ':visible'
+                            search: 'applied'
+                        }
                     },
                     orientation: 'landscape',
                     pageSize: 'A4',
                     customize: function (doc) {
                         doc.defaultStyle.fontSize = 7;
                         doc.styles.tableHeader.fontSize = 7;
-                        doc.content[1].table.widths = Array(12).fill('*');
                         
-                        // Add filter info to PDF
                         const currentFilter = table.search();
                         if (currentFilter) {
                             doc.content.splice(1, 0, {
@@ -575,22 +536,20 @@
                     extend: 'excelHtml5', 
                     title: 'Recent Transfers Report', 
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+                        columns: ':visible',
                         modifier: {
-                            search: 'applied' // Export only filtered data
-                        },
-                         rows: ':visible'
+                            search: 'applied'
+                        }
                     }
                 },
                 { 
                     extend: 'csvHtml5', 
                     title: 'Recent Transfers Report', 
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+                        columns: ':visible',
                         modifier: {
-                            search: 'applied' // Export only filtered data
-                        },
-                         rows: ':visible'
+                            search: 'applied'
+                        }
                     }
                 }
             ],
@@ -607,24 +566,19 @@
 
         // Bind your custom buttons to DataTables export buttons
         $('#printButton').on('click', function () {
-            table.button(0).trigger(); // Print
+            table.button(0).trigger();
         });
 
         $('#pdfButton').on('click', function () {
-            table.button(1).trigger(); // PDF
+            table.button(1).trigger();
         });
 
         $('#excelButton').on('click', function () {
-            table.button(2).trigger(); // Excel
+            table.button(2).trigger();
         });
 
         $('#csvButton').on('click', function () {
-            table.button(3).trigger(); // CSV
-        });
-
-        // Optional: Add a reset filter button
-        $('#resetFilter').on('click', function () {
-            table.search('').draw();
+            table.button(3).trigger();
         });
     });
 </script>
@@ -639,12 +593,14 @@
         float: right;
     }
     
- .dataTables_info {
-    display: none !important;
-}
+    .dataTables_info {
+        display: none !important;
+    }
 
     /* Ensure table container is properly sized */
-   
+    .dataTables_wrapper {
+        position: relative;
+    }
 
     /* Print-specific styles */
     @media print {

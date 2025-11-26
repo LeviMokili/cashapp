@@ -80,7 +80,6 @@
             <div class="card">
                 <div class="card-body">
                     <div class="grid grid-cols-1 gap-4 mb-5 lg:grid-cols-2 xl:grid-cols-12">
-                        <h6 class="text-15 grow">Leave</h6>
                         <div class="xl:col-span-2 xl:col-start-11">
                             <div class="ltr:lg:text-right rtl:lg:text-left">
                                 <a href="{{ route('hr.LeavesManage.create-leave-employee') }}" type="button"
